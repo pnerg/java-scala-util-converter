@@ -39,6 +39,8 @@ credentials ++= {
   }
 }
 
+libraryDependencies += "org.dmonix.functional" % "java-scala-utils" % "1.4"
+
 publishMavenStyle := true
 
 publishArtifact in Test := false
