@@ -28,6 +28,11 @@ object Implicits extends Implicits {
  * Trait with all definitions for the Java -> Scala conversions.
  */
 trait Implicits {
+  /** 
+   * The implicit definition for decorating the javascalautils.None class.
+   * @since 1.0
+   */
+  implicit def asScalaOption[T](underlying: JOption[T]) = new OptionDecorator[T](underlying)
   
   /** 
    * The implicit definition for decorating the javascalautils.None class.
@@ -42,6 +47,13 @@ trait Implicits {
   implicit def asScalaSome[T](underlying: JSome[T]) = new SomeDecorator[T](underlying)
 }
 
+/**
+ * Class containing the asScala method that will decorate the javascalautils.Option class.
+ * @since 1.0
+ */
+class OptionDecorator[T](underlying: JOption[T]) {
+  def asScala[T]() = if(underlying.isDefined()) Some(underlying.get) else None 
+}
 
 /**
  * Class containing the asScala method that will decorate the javascalautils.None class.

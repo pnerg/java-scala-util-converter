@@ -13,18 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package javascalautils.converters
+package javascalautils.converters.j2s
 
 import org.scalatest.FunSuite
 
-import javascalautils.{ None => JNone, Some => JSome, Option => JOption }
-import javascalautils.converters.JavaScalaUtilConverter.{ asScalaNone, asScalaSome, asScalaOption }
+import javascalautils.{ None => JNone, Option => JOption, Some => JSome }
+import javascalautils.converters.j2s.Implicits.{ asScalaNone, asScalaOption, asScalaSome }
 
 /**
- * Test suite for JavaScalaUtilConverter.
+ * Test suite for Implicits Option/Some/None conversions.
  * @author Peter Nerg
  */
-class JavaScalaUtilConverterSuite extends FunSuite {
+class ImplicitsOptionSuite extends FunSuite {
   val expected = "Peter was here"
 
   test("Java Option-None as Scala") {
@@ -51,5 +51,4 @@ class JavaScalaUtilConverterSuite extends FunSuite {
     assert(some.isDefined)
     assertResult(expected)(some.get)
   }
-
 }
