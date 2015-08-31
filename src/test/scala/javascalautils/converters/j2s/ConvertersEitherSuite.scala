@@ -32,4 +32,10 @@ class ConvertersEitherSuite extends FunSuite {
     assert(left.isLeft)
     assertResult(expected)(left.left.get)
   }
+
+  test("Test asScalaRight") {
+    val right = asScalaRight(new JRight[String,String](expected))
+    assert(right.isRight)
+    assertResult(expected)(right.right.get)
+  }
 }

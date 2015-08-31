@@ -32,4 +32,10 @@ class ImplicitsEitherSuite extends FunSuite {
     assert(left.isLeft)
     assertResult(expected)(left.left.get)
   }
+
+  test("Test asScalaRight") {
+    val right = new JRight[String, String](expected).asScala
+    assert(right.isRight)
+    assertResult(expected)(right.right.get)
+  }
 }

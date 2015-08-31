@@ -71,5 +71,15 @@ trait TryConverters {
  * @author Peter Nerg
  */
 trait EitherConverters {
+  /**
+   * Converts a javascalautils.Left to a scala.util.Left.
+   * @since 1.0
+   */
   def asScalaLeft[L, R](underlying: JLeft[L, R]) = Left(underlying.left.get)
+
+  /**
+   * Converts a javascalautils.Right to a scala.util.Right.
+   * @since 1.0
+   */
+  def asScalaRight[L, R](underlying: JRight[L, R]) = Right(underlying.right.get)
 }

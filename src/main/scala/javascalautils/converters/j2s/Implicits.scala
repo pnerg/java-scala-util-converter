@@ -79,7 +79,17 @@ trait TryImplicits {
  * Trait with all implicit definitions for the javascalautils.Either/Left/Right -> scala.util.Either/Left/Right conversions.
  */
 trait EitherImplicits {
+  /** 
+   * The implicit definition for decorating the javascalautils.Left class.
+   * @since 1.0
+   */
   implicit def asScalaLeft[L, R](underlying: JLeft[L, R]) = new LeftDecorator[L,R](underlying)
+
+  /** 
+   * The implicit definition for decorating the javascalautils.Right class.
+   * @since 1.0
+   */
+  implicit def asScalaRight[L, R](underlying: JRight[L, R]) = new RightDecorator[L,R](underlying)
 }
 
 /**
@@ -131,9 +141,17 @@ class TryDecorator[T](underlying: JTry[T]) {
 }
 
 /**
- * Class containing the asScala method that will decorate the javascalautils.Try class.
+ * Class containing the asScala method that will decorate the javascalautils.Left class.
  * @since 1.0
  */
 class LeftDecorator[L,R](underlying: JLeft[L,R]) {
   def asScala[L,R]() = asScalaLeft(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the javascalautils.Right class.
+ * @since 1.0
+ */
+class RightDecorator[L,R](underlying: JRight[L,R]) {
+  def asScala[L,R]() = asScalaRight(underlying)
 }
