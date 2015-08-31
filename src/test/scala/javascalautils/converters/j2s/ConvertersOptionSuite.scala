@@ -27,13 +27,13 @@ import javascalautils.converters.j2s.Converters._
 class ConvertersOptionSuite extends FunSuite {
   val expected = "Peter was here"
 
-  test("Test asScalaOption with a None") {
+  test("Test asScalaOption with None") {
     val jnone: JOption[String] = new JNone()
     val option = asScalaOption(jnone)
     assert(option.isEmpty)
   }
 
-  test("Test asScalaOption with a Some") {
+  test("Test asScalaOption with Some") {
     val jsome: JOption[String] = new JSome(expected)
     val option = asScalaOption(jsome)
     assert(option.isDefined)

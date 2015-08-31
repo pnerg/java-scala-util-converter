@@ -28,13 +28,21 @@ class ImplicitsTrySuite extends FunSuite {
   val expected = "Success is never a Failure"
 
   test("Java Failure as Scala") {
-    val failure = new JFailure(new Exception("Error, terror")).asScala()
+    val failure = new JFailure(new Exception("Error, terror")).asScala
     assert(failure.isFailure)
     assertResult("Error, terror")(failure.failed.get.getMessage)
   }
 
   test("Java Success as Scala") {
-    val success = new JSuccess(expected).asScala()
+    val success = new JSuccess(expected).asScala
+    assert(success.isSuccess)
+    assertResult(expected)(success.get)
+  }
+
+
+  test("Java Try-Success as Scala") {
+    val jsuccess:JTry[String] = new JSuccess(expected)
+    val success = jsuccess.asScala
     assert(success.isSuccess)
     assertResult(expected)(success.get)
   }

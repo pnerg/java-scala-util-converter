@@ -39,4 +39,16 @@ class ConvertersTrySuite extends FunSuite {
     assert(success.isSuccess)
     assertResult(expected)(success.get)
   }
+
+  test("Test asScalaTry with Success") {
+    val success = asScalaTry(new JSuccess(expected))
+    assert(success.isSuccess)
+    assertResult(expected)(success.get)
+  }
+
+  test("Test asScalaTry with Failure") {
+    val failure = asScalaTry(new JFailure(new Exception("Error, terror")))
+    assert(failure.isFailure)
+    assertResult("Error, terror")(failure.failed.get.getMessage)
+  }
 }

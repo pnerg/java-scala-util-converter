@@ -33,7 +33,6 @@ object Implicits extends Implicits {
 trait Implicits extends OptionImplicits with TryImplicits
 
 trait OptionImplicits {
-  
   /** 
    * The implicit definition for decorating the javascalautils.None class.
    * @since 1.0
@@ -68,6 +67,12 @@ trait TryImplicits {
    * @since 1.0
    */
   implicit def asScalaSuccess[T](underlying: JSuccess[T]) = new SuccessDecorator[T](underlying)
+
+  /** 
+   * The implicit definition for decorating the javascalautils.Try class.
+   * @since 1.0
+   */
+  implicit def asScalaTry[T](underlying: JTry[T]) = new TryDecorator[T](underlying)
 }
 
 /**
@@ -108,4 +113,12 @@ class FailureDecorator[T](underlying: JFailure[T]) {
  */
 class SuccessDecorator[T](underlying: JSuccess[T]) {
   def asScala[T]() = asScalaSuccess(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the javascalautils.Try class.
+ * @since 1.0
+ */
+class TryDecorator[T](underlying: JTry[T]) {
+  def asScala[T]() = asScalaTry(underlying)
 }
