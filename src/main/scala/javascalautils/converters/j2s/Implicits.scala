@@ -31,8 +31,15 @@ trait Implicits {
   
   /** 
    * The implicit definition for decorating the javascalautils.None class.
+   * @since 1.0
    */
   implicit def asScalaNone[T](underlying: JNone[T]) = new NoneDecorator[T](underlying)
+
+  /** 
+   * The implicit definition for decorating the javascalautils.None class.
+   * @since 1.0
+   */
+  implicit def asScalaSome[T](underlying: JSome[T]) = new SomeDecorator[T](underlying)
 }
 
 
@@ -42,4 +49,12 @@ trait Implicits {
  */
 class NoneDecorator[T](underlying: JNone[T]) {
   def asScala[T]() = None
+}
+
+/**
+ * Class containing the asScala method that will decorate the javascalautils.Some class.
+ * @since 1.0
+ */
+class SomeDecorator[T](underlying: JSome[T]) {
+  def asScala[T]() = Some(underlying.get)
 }

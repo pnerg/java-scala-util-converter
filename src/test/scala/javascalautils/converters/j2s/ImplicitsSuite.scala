@@ -24,9 +24,20 @@ import javascalautils.{Option => JOption, None => JNone, Some => JSome}
  * @author Peter Nerg
  */
 class ImplicitsSuite extends FunSuite {
-  test("Java Option as Scala") {
+  
+  test("Java None as Scala") {
       import javascalautils.converters.j2s.Implicits._
       val none = new JNone[String]().asScala()
       assert(none.isEmpty)
+  }
+
+  test("Java Some as Scala") {
+      import javascalautils.converters.j2s.Implicits._
+      val expected = "Peter was here"
+      
+      val some = new JSome(expected).asScala()
+      
+      assert(some.isDefined)
+      assertResult(expected)(some.get)
   }
 }
