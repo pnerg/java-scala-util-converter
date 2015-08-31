@@ -25,7 +25,6 @@ import javascalautils.converters.j2s.Implicits._
  * @author Peter Nerg
  */
 class ImplicitsTrySuite extends FunSuite {
-  val expected = "Peter was here"
 
   test("Java Failure as Scala") {
     val failure = new JFailure(new Exception("Error, terror")).asScala()
