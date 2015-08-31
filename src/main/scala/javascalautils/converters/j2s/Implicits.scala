@@ -30,7 +30,10 @@ object Implicits extends Implicits {
 /**
  * Trait with all definitions for the Java -> Scala conversions.
  */
-trait Implicits {
+trait Implicits extends OptionImplicits with TryImplicits
+
+trait OptionImplicits {
+  
   /** 
    * The implicit definition for decorating the javascalautils.None class.
    * @since 1.0
@@ -48,7 +51,12 @@ trait Implicits {
    * @since 1.0
    */
   implicit def asScalaSome[T](underlying: JSome[T]) = new SomeDecorator[T](underlying)
+}
 
+/**
+ * Trait with all definitions for the Java -> Scala conversions.
+ */
+trait TryImplicits {
   /** 
    * The implicit definition for decorating the javascalautils.Failure class.
    * @since 1.0
