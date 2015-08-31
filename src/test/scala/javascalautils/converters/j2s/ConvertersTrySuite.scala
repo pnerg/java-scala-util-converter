@@ -26,9 +26,17 @@ import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
  * @author Peter Nerg
  */
 class ConvertersTrySuite extends FunSuite {
+  val expected = "Success is never a Failure"
+  
   test("Test asScalaFailure") {
     val failure = asScalaFailure(new JFailure(new Exception("Error, terror")))
     assert(failure.isFailure)
     assertResult("Error, terror")(failure.failed.get.getMessage)
+  }
+
+  test("Test asScalaSuccess") {
+    val success = asScalaSuccess(new JSuccess(expected))
+    assert(success.isSuccess)
+    assertResult(expected)(success.get)
   }
 }

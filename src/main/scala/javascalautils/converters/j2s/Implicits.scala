@@ -54,6 +54,12 @@ trait Implicits {
    * @since 1.0
    */
   implicit def asScalaFailure[T](underlying: JFailure[T]) = new FailureDecorator[T](underlying)
+
+  /** 
+   * The implicit definition for decorating the javascalautils.Success class.
+   * @since 1.0
+   */
+  implicit def asScalaSuccess[T](underlying: JSuccess[T]) = new SuccessDecorator[T](underlying)
 }
 
 /**
@@ -81,9 +87,17 @@ class SomeDecorator[T](underlying: JSome[T]) {
 }
 
 /**
- * Class containing the asScala method that will decorate the javascalautils.Some class.
+ * Class containing the asScala method that will decorate the javascalautils.Failure class.
  * @since 1.0
  */
 class FailureDecorator[T](underlying: JFailure[T]) {
   def asScala[T]() = asScalaFailure(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the javascalautils.Success class.
+ * @since 1.0
+ */
+class SuccessDecorator[T](underlying: JSuccess[T]) {
+  def asScala[T]() = asScalaSuccess(underlying)
 }

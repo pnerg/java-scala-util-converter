@@ -17,7 +17,7 @@ package javascalautils.converters.j2s
 
 import org.scalatest.FunSuite
 
-import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
+import javascalautils.{ Try => JTry, Success => JSuccess, Failure => JFailure }
 import javascalautils.converters.j2s.Implicits._
 
 /**
@@ -25,6 +25,7 @@ import javascalautils.converters.j2s.Implicits._
  * @author Peter Nerg
  */
 class ImplicitsTrySuite extends FunSuite {
+  val expected = "Success is never a Failure"
 
   test("Java Failure as Scala") {
     val failure = new JFailure(new Exception("Error, terror")).asScala()
@@ -32,4 +33,9 @@ class ImplicitsTrySuite extends FunSuite {
     assertResult("Error, terror")(failure.failed.get.getMessage)
   }
 
+  test("Java Success as Scala") {
+    val success = new JSuccess(expected).asScala()
+    assert(success.isSuccess)
+    assertResult(expected)(success.get)
+  }
 }

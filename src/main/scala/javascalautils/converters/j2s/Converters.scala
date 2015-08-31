@@ -2,7 +2,7 @@ package javascalautils.converters.j2s
 
 import javascalautils.{Option => JOption, Some => JSome, None => JNone}
 import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
-import scala.util.Failure
+import scala.util.{Try,Failure,Success}
 
 /**
  * Object implementing its trait
@@ -51,5 +51,11 @@ trait TryConverters {
    * @since 1.0
    */
   def asScalaFailure[T](underlying: JFailure[T]) = Failure(underlying.failed().get)
-  
+
+    /** 
+   * Converts a javascalautils.Success to a scala.util.Success.
+   * @since 1.0
+   */
+  def asScalaSuccess[T](underlying: JSuccess[T]) = Success(underlying.get)
+
 }
