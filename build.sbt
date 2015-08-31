@@ -4,11 +4,13 @@ organization := "org.dmonix.functional"
 
 version := "1.0-SNAPSHOT"
 
-crossScalaVersions := Seq("2.9.3", "2.10.4", "2.11.5")
+//crossScalaVersions := Seq("2.9.3", "2.10.4", "2.11.5")
+scalaVersion := "2.11.4"
+
 
 scalacOptions <++= scalaVersion map { (v: String) => 
   if (v.trim.startsWith("2.1"))
-    Seq("-deprecation", "-unchecked", "-feature", "-language:implicitConversions", "-language:higherKinds")
+    Seq("-deprecation", "-unchecked", "-feature", "-language:implicitConversions", "-language:higherKinds", "-target:jvm-1.8")
   else
     Seq("-deprecation", "-unchecked")
 }
@@ -39,7 +41,10 @@ credentials ++= {
   }
 }
 
-libraryDependencies += "org.dmonix.functional" % "java-scala-utils" % "1.4"
+libraryDependencies ++= Seq(
+  "org.dmonix.functional" % "java-scala-utils" % "1.4",
+  "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
+)
 
 publishMavenStyle := true
 
