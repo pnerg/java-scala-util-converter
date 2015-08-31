@@ -17,7 +17,7 @@ package javascalautils.converters.j2s
 
 import javascalautils.{Option => JOption, Some => JSome, None => JNone}
 import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
-import scala.util.Failure
+import javascalautils.{ Either => JEither, Left => JLeft, Right => JRight }
 import Converters._
 
 /**
@@ -28,9 +28,9 @@ object Implicits extends Implicits {
 }
 
 /**
- * Trait with all definitions for the Java -> Scala conversions.
+ * Trait with all implicit definitions for javascalautils.Option/Some/None -> scala.Option/Some/None conversions.
  */
-trait Implicits extends OptionImplicits with TryImplicits
+trait Implicits extends OptionImplicits with TryImplicits with EitherImplicits
 
 trait OptionImplicits {
   /** 
@@ -53,7 +53,7 @@ trait OptionImplicits {
 }
 
 /**
- * Trait with all definitions for the Java -> Scala conversions.
+ * Trait with all implicit definitions for the javascalautils.Try/Success/Failure -> scala.util.Try/Success/Failure conversions.
  */
 trait TryImplicits {
   /** 
@@ -73,6 +73,13 @@ trait TryImplicits {
    * @since 1.0
    */
   implicit def asScalaTry[T](underlying: JTry[T]) = new TryDecorator[T](underlying)
+}
+
+/**
+ * Trait with all implicit definitions for the javascalautils.Either/Left/Right -> scala.util.Either/Left/Right conversions.
+ */
+trait EitherImplicits {
+  implicit def asScalaLeft[L, R](underlying: JLeft[L, R]) = new LeftDecorator[L,R](underlying)
 }
 
 /**
@@ -121,4 +128,12 @@ class SuccessDecorator[T](underlying: JSuccess[T]) {
  */
 class TryDecorator[T](underlying: JTry[T]) {
   def asScala[T]() = asScalaTry(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the javascalautils.Try class.
+ * @since 1.0
+ */
+class LeftDecorator[L,R](underlying: JLeft[L,R]) {
+  def asScala[L,R]() = asScalaLeft(underlying)
 }

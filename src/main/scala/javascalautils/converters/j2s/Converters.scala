@@ -2,7 +2,9 @@ package javascalautils.converters.j2s
 
 import javascalautils.{ Option => JOption, Some => JSome, None => JNone }
 import javascalautils.{ Try => JTry, Success => JSuccess, Failure => JFailure }
+import javascalautils.{ Either => JEither, Left => JLeft, Right => JRight }
 import scala.util.{ Try, Failure, Success }
+import scala.util.{ Either, Left, Right }
 
 /**
  * Object implementing its trait
@@ -14,10 +16,10 @@ object Converters extends Converters
  * Provides the code for converting a class from javascalautils -> Scala
  * @author Peter Nerg
  */
-trait Converters extends OptionConverters with TryConverters
+trait Converters extends OptionConverters  with TryConverters with EitherConverters
 
 /**
- * Provides the code for converting a javascalautils.Option/Some/None -> scala.Option/Some/None
+ * Provides the code for converting javascalautils.Option/Some/None -> scala.Option/Some/None
  * @author Peter Nerg
  */
 trait OptionConverters {
@@ -25,7 +27,7 @@ trait OptionConverters {
    * Converts a javascalautils.Option to a scala.Option.
    * @since 1.0
    */
-  def asScalaOption[T](underlying: JOption[T]) = if (underlying.isDefined()) Some(underlying.get) else None
+  def asScalaOption[T](underlying: JOption[T]) = if (underlying.isDefined) Some(underlying.get) else None
 
   /**
    * Converts a javascalautils.None to a scala.None.
@@ -41,7 +43,7 @@ trait OptionConverters {
 }
 
 /**
- * Provides the code for converting a javascalautils.Try/Success/Failure -> scala.util.Try/Success/Failure
+ * Provides the code for converting javascalautils.Try/Success/Failure -> scala.util.Try/Success/Failure
  * @author Peter Nerg
  */
 trait TryConverters {
@@ -49,7 +51,7 @@ trait TryConverters {
    * Converts a javascalautils.Failure to a scala.util.Failure.
    * @since 1.0
    */
-  def asScalaFailure[T](underlying: JFailure[T]) = Failure(underlying.failed().get)
+  def asScalaFailure[T](underlying: JFailure[T]) = Failure(underlying.failed.get)
 
   /**
    * Converts a javascalautils.Success to a scala.util.Success.
@@ -61,5 +63,13 @@ trait TryConverters {
    * Converts a javascalautils.Try to a scala.util.Try.
    * @since 1.0
    */
-  def asScalaTry[T](underlying: JTry[T]) = if(underlying.isSuccess()) Success(underlying.get) else Failure(underlying.failed().get)
+  def asScalaTry[T](underlying: JTry[T]) = if(underlying.isSuccess()) Success(underlying.get) else Failure(underlying.failed.get)
+}
+
+/**
+ * Provides the code for converting a javascalautils.Either/Left/Right -> scala.util.Either/Left/Right
+ * @author Peter Nerg
+ */
+trait EitherConverters {
+  def asScalaLeft[L, R](underlying: JLeft[L, R]) = Left(underlying.left.get)
 }

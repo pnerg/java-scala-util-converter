@@ -25,7 +25,7 @@ import javascalautils.converters.j2s.Converters._
  * @author Peter Nerg
  */
 class ConvertersOptionSuite extends FunSuite {
-  val expected = "Peter was here"
+  val expected = "Some is never None"
 
   test("Test asScalaOption with None") {
     val jnone: JOption[String] = new JNone()

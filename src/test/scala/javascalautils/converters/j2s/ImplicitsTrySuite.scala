@@ -21,7 +21,7 @@ import javascalautils.{ Try => JTry, Success => JSuccess, Failure => JFailure }
 import javascalautils.converters.j2s.Implicits._
 
 /**
- * Test suite for Implicits Option/Some/None conversions.
+ * Test suite for Implicits Try/Success/Failure conversions.
  * @author Peter Nerg
  */
 class ImplicitsTrySuite extends FunSuite {
