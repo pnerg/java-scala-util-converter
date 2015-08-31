@@ -16,6 +16,9 @@
 package javascalautils.converters.j2s
 
 import javascalautils.{Option => JOption, Some => JSome, None => JNone}
+import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
+import scala.util.Failure
+import Converters._
 
 /**
  * The object for all implicit Java -> Scala conversions.
@@ -45,6 +48,12 @@ trait Implicits {
    * @since 1.0
    */
   implicit def asScalaSome[T](underlying: JSome[T]) = new SomeDecorator[T](underlying)
+
+  /** 
+   * The implicit definition for decorating the javascalautils.Failure class.
+   * @since 1.0
+   */
+  implicit def asScalaFailure[T](underlying: JFailure[T]) = new FailureDecorator[T](underlying)
 }
 
 /**
@@ -52,7 +61,7 @@ trait Implicits {
  * @since 1.0
  */
 class OptionDecorator[T](underlying: JOption[T]) {
-  def asScala[T]() = if(underlying.isDefined()) Some(underlying.get) else None 
+  def asScala[T]() = asScalaOption(underlying) 
 }
 
 /**
@@ -60,7 +69,7 @@ class OptionDecorator[T](underlying: JOption[T]) {
  * @since 1.0
  */
 class NoneDecorator[T](underlying: JNone[T]) {
-  def asScala[T]() = None
+  def asScala[T]() = asScalaNone(underlying)
 }
 
 /**
@@ -68,5 +77,13 @@ class NoneDecorator[T](underlying: JNone[T]) {
  * @since 1.0
  */
 class SomeDecorator[T](underlying: JSome[T]) {
-  def asScala[T]() = Some(underlying.get)
+  def asScala[T]() = asScalaSome(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the javascalautils.Some class.
+ * @since 1.0
+ */
+class FailureDecorator[T](underlying: JFailure[T]) {
+  def asScala[T]() = asScalaFailure(underlying)
 }

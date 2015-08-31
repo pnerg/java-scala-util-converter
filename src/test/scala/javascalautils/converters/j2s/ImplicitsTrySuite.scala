@@ -13,19 +13,24 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+package javascalautils.converters.j2s
 
+import org.scalatest.FunSuite
 
-package javascalautils.converters
+import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
+import javascalautils.converters.j2s.Implicits._
 
 /**
+ * Test suite for Implicits Option/Some/None conversions.
  * @author Peter Nerg
  */
-object JavaScalaUtilConverter extends Implicits
+class ImplicitsTrySuite extends FunSuite {
+  val expected = "Peter was here"
 
-trait Implicits extends j2s.Implicits
+  test("Java Failure as Scala") {
+    val failure = new JFailure(new Exception("Error, terror")).asScala()
+    assert(failure.isFailure)
+    assertResult("Error, terror")(failure.failed.get.getMessage)
+  }
 
-object Imports extends Imports
-trait Imports extends Implicits
-
-object Converters extends Converters
-trait Converters extends j2s.Converters
+}
