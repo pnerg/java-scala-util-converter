@@ -27,14 +27,28 @@ import javascalautils.converters.j2s.Implicits._
 class ImplicitsEitherSuite extends FunSuite {
   val expected = "Left is not Right"
 
-  test("Test asScalaLeft") {
+  test("Java Left as Scala") {
     val left = new JLeft[String, String](expected).asScala
     assert(left.isLeft)
     assertResult(expected)(left.left.get)
   }
 
-  test("Test asScalaRight") {
+  test("Java Right as Scala") {
     val right = new JRight[String, String](expected).asScala
+    assert(right.isRight)
+    assertResult(expected)(right.right.get)
+  }
+
+  test("Java Either-Left as Scala") {
+    val jleft:JEither[String, String] = new JLeft[String, String](expected) 
+    val left = jleft.asScala
+    assert(left.isLeft)
+    assertResult(expected)(left.left.get)
+  }
+
+  test("Java Either-Right as Scala") {
+    val jright:JRight[String,String] = new JRight[String, String](expected)
+    val right = jright.asScala
     assert(right.isRight)
     assertResult(expected)(right.right.get)
   }

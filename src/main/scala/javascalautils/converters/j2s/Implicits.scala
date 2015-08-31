@@ -90,6 +90,12 @@ trait EitherImplicits {
    * @since 1.0
    */
   implicit def asScalaRight[L, R](underlying: JRight[L, R]) = new RightDecorator[L,R](underlying)
+
+  /** 
+   * The implicit definition for decorating the javascalautils.Either class.
+   * @since 1.0
+   */
+  implicit def asScalaEither[L, R](underlying: JEither[L, R]) = new EitherDecorator[L,R](underlying)
 }
 
 /**
@@ -154,4 +160,12 @@ class LeftDecorator[L,R](underlying: JLeft[L,R]) {
  */
 class RightDecorator[L,R](underlying: JRight[L,R]) {
   def asScala[L,R]() = asScalaRight(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the javascalautils.Either class.
+ * @since 1.0
+ */
+class EitherDecorator[L,R](underlying: JEither[L,R]) {
+  def asScala[L,R]() = asScalaEither(underlying)
 }
