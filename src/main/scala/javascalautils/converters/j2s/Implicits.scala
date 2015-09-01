@@ -34,7 +34,7 @@ trait Implicits extends OptionImplicits with TryImplicits with EitherImplicits
 
 trait OptionImplicits {
   /** 
-   * The implicit definition for decorating the javascalautils.None class.
+   * The implicit definition for decorating the javascalautils.Option class.
    * @since 1.0
    */
   implicit def asScalaOption[T](underlying: JOption[T]) = new OptionDecorator[T](underlying)
@@ -46,7 +46,7 @@ trait OptionImplicits {
   implicit def asScalaNone[T](underlying: JNone[T]) = new NoneDecorator[T](underlying)
 
   /** 
-   * The implicit definition for decorating the javascalautils.None class.
+   * The implicit definition for decorating the javascalautils.Some class.
    * @since 1.0
    */
   implicit def asScalaSome[T](underlying: JSome[T]) = new SomeDecorator[T](underlying)
