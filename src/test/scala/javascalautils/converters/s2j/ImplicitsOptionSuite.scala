@@ -13,42 +13,23 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package javascalautils.converters.j2s
+package javascalautils.converters.s2j
 
 import org.scalatest.FunSuite
 
 import javascalautils.{ None => JNone, Option => JOption, Some => JSome }
-import javascalautils.converters.j2s.Implicits.{ asScalaNone, asScalaOption, asScalaSome }
+import javascalautils.converters.s2j.Implicits._
 
 /**
- * Test suite for Implicits Option/Some/None conversions.
+ * Test suite for Implicits scala.Option/Some/None conversions.
  * @author Peter Nerg
  */
 class ImplicitsOptionSuite extends FunSuite {
   val expected = "Some is never None"
 
-  test("Java Option-None as Scala") {
-    val jnone: JOption[String] = new JNone()
-    val option = jnone.asScala()
-    assert(option.isEmpty)
+  test("Scala None as Java") {
+    val jnone = None.asJava()
+    assert(jnone.isEmpty())
   }
 
-  test("Java Option-Some as Scala") {
-    val jsome: JOption[String] = new JSome(expected)
-    val option = jsome.asScala()
-    assert(option.isDefined)
-    assertResult(expected)(option.get)
-  }
-
-  test("Java None as Scala") {
-    val none = new JNone[String]().asScala()
-    assert(none.isEmpty)
-  }
-
-  test("Java Some as Scala") {
-    val some = new JSome(expected).asScala()
-
-    assert(some.isDefined)
-    assertResult(expected)(some.get)
-  }
 }

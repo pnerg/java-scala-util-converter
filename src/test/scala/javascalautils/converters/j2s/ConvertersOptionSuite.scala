@@ -21,7 +21,7 @@ import javascalautils.{ None => JNone, Option => JOption, Some => JSome }
 import javascalautils.converters.j2s.Converters._
 
 /**
- * Test suite for Converters Option/Some/None conversions.
+ * Test suite for Converters javascalautils.Option/Some/None conversions.
  * @author Peter Nerg
  */
 class ConvertersOptionSuite extends FunSuite {
