@@ -16,7 +16,6 @@
 package javascalautils.converters.s2j
 
 import javascalautils.{Option => JOption, Some => JSome, None => JNone}
-import Converters._
 
 /**
  * The object for all implicit Scala -> Java conversions.
@@ -41,12 +40,25 @@ trait OptionImplicits {
    */
   implicit def asJavaNone[T](underlying: None.type) = new NoneDecorator[T](underlying)
 
+  /** 
+   * The implicit definition for decorating the scala.Some class.
+   * @since 1.0
+   */
+  implicit def asJavaSome[T](underlying: Some[T]) = new SomeDecorator[T](underlying)
 }
 
 /**
- * Class containing the asScala method that will decorate the javascalautils.Option class.
+ * Class containing the asScala method that will decorate the scala.None class.
  * @since 1.0
  */
 class NoneDecorator[T](underlying: None.type) {
-  def asJava[T]() = asJavaNone(underlying)
+  def asJava[T]() = Converters.asJavaNone(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the scala.Some class.
+ * @since 1.0
+ */
+class SomeDecorator[T](underlying: Some[T]) {
+  def asJava[T]() = Converters.asJavaSome(underlying)
 }

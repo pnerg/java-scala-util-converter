@@ -40,4 +40,10 @@ trait OptionConverters {
    */
   def asJavaNone[T](underlying: None.type) = new JNone
 
+  /**
+   * Converts a scala.Some to a javascalautils.Some.
+   * @since 1.0
+   */
+  def asJavaSome[T](underlying: Some[T]) = new JSome(underlying.get)
+
 }

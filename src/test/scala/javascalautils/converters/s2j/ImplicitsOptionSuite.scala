@@ -28,8 +28,13 @@ class ImplicitsOptionSuite extends FunSuite {
   val expected = "Some is never None"
 
   test("Scala None as Java") {
-    val jnone = None.asJava()
-    assert(jnone.isEmpty())
+    val jnone = None.asJava
+    assert(jnone.isEmpty)
   }
 
+  test("Scala Some as Java") {
+    val jsome = Some(expected).asJava
+    assert(jsome.isDefined)
+    assertResult(expected)(jsome.get)
+  }
 }

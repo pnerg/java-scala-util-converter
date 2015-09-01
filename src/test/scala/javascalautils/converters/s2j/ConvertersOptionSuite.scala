@@ -29,4 +29,10 @@ class ConvertersOptionSuite extends FunSuite {
         val jnone = asJavaNone(None)
         assert(jnone.isEmpty())
     }
+
+    test("Test asJavaSome") {
+        val jsome = asJavaSome(Some(expected))
+        assert(jsome.isDefined)
+        assertResult(expected)(jsome.get)
+    }
 }
