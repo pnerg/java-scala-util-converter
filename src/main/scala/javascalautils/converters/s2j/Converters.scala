@@ -46,4 +46,9 @@ trait OptionConverters {
    */
   def asJavaSome[T](underlying: Some[T]) = new JSome(underlying.get)
 
+  /**
+   * Converts a scala.Option to a javascalautils.Option.
+   * @since 1.0
+   */
+  def asJavaOption[T](underlying: Option[T]) = if (underlying.isDefined) new JSome(underlying.get) else new JNone
 }

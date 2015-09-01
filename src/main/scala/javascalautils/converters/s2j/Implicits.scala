@@ -45,6 +45,12 @@ trait OptionImplicits {
    * @since 1.0
    */
   implicit def asJavaSome[T](underlying: Some[T]) = new SomeDecorator[T](underlying)
+
+  /** 
+   * The implicit definition for decorating the scala.Option class.
+   * @since 1.0
+   */
+  implicit def asJavaOption[T](underlying: Option[T]) = new OptionDecorator[T](underlying)
 }
 
 /**
@@ -61,4 +67,12 @@ class NoneDecorator[T](underlying: None.type) {
  */
 class SomeDecorator[T](underlying: Some[T]) {
   def asJava[T]() = Converters.asJavaSome(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the scala.Option class.
+ * @since 1.0
+ */
+class OptionDecorator[T](underlying: Option[T]) {
+  def asJava[T]() = Converters.asJavaOption(underlying)
 }

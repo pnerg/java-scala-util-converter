@@ -37,4 +37,18 @@ class ImplicitsOptionSuite extends FunSuite {
     assert(jsome.isDefined)
     assertResult(expected)(jsome.get)
   }
+
+  test("Scala Option-Some as Java") {
+    val option:Option[String] = Some(expected)
+    val joption = option.asJava
+    assert(joption.isDefined)
+    assertResult(expected)(joption.get)
+  }
+
+  test("Scala Option-None as Java") {
+    val option = None
+    val joption = option.asJava
+    assert(joption.isEmpty())
+  }
+
 }

@@ -35,4 +35,15 @@ class ConvertersOptionSuite extends FunSuite {
         assert(jsome.isDefined)
         assertResult(expected)(jsome.get)
     }
+
+    test("Test asJavaOption with Some") {
+        val joption = asJavaOption(Some(expected))
+        assert(joption.isDefined)
+        assertResult(expected)(joption.get)
+    }
+
+    test("Test asJavaOption with None") {
+        val joption = asJavaOption(None)
+        assert(joption.isEmpty())
+    }
 }
