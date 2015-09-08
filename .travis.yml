@@ -4,4 +4,9 @@ scala:
 jdk:
   - oraclejdk8
 
+script:
+  - sbt clean scoverage:test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
