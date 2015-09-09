@@ -46,6 +46,11 @@ libraryDependencies ++= Seq(
   "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
 )
 
+ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := {
+  if (scalaBinaryVersion.value == "2.10") false
+  else false
+}
+
 publishMavenStyle := true
 
 publishArtifact in Test := false
