@@ -72,4 +72,10 @@ trait TryConverters {
    * @since 1.0
    */
   def asJavaSuccess[T](underlying: Success[T]) = new JSuccess(underlying.get)
+  
+  /**
+   * Converts a scala.Try to a javascalautils.Try.
+   * @since 1.0
+   */
+  def asJavaTry[T](underlying: Try[T]) = if(underlying.isSuccess) new JSuccess(underlying.get) else new JFailure(underlying.failed.get)
 }
