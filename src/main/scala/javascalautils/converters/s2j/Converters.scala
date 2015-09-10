@@ -16,6 +16,8 @@
 package javascalautils.converters.s2j
 
 import javascalautils.{ Option => JOption, Some => JSome, None => JNone }
+import javascalautils.{ Try => JTry, Success => JSuccess, Failure => JFailure }
+import scala.util.{Try,Failure,Success}
 
 /**
  * Object implementing its trait
@@ -27,7 +29,7 @@ object Converters extends Converters
  * Provides the code for converting a class from Scala -> javascalautils
  * @author Peter Nerg
  */
-trait Converters extends OptionConverters
+trait Converters extends OptionConverters with TryConverters
 
 /**
  * Provides the code for converting scala.Option/Some/None -> javascalautils.Option/Some/None 
@@ -51,4 +53,18 @@ trait OptionConverters {
    * @since 1.0
    */
   def asJavaOption[T](underlying: Option[T]) = if (underlying.isDefined) new JSome(underlying.get) else new JNone
+}
+
+/**
+ * Provides the code for converting scala.util.Try/Success/Failure -> javascalautils.Try/Success/Failure
+ * @author Peter Nerg
+ */
+trait TryConverters {
+  
+  /**
+   * Converts a scala.Failure to a javascalautils.Failure.
+   * @since 1.0
+   */
+  def asJavaFailure[T](underlying: Failure[T]) = new JFailure(underlying.failed.get)
+  
 }

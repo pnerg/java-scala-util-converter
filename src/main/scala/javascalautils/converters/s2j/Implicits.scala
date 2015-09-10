@@ -16,22 +16,24 @@
 package javascalautils.converters.s2j
 
 import javascalautils.{Option => JOption, Some => JSome, None => JNone}
+import javascalautils.{ Try => JTry, Success => JSuccess, Failure => JFailure }
+
+import scala.util.{Try,Failure,Success}
 
 /**
  * The object for all implicit Scala -> Java conversions.
  * @author Peter Nerg
  * @since 1.0
  */
-object Implicits extends Implicits {
-}
+object Implicits extends Implicits
 
 /**
  * Trait with all implicit definitions for Scala -> Java conversions
  */
-trait Implicits extends OptionImplicits
+trait Implicits extends OptionImplicits with TryImplicits
 
 /**
- * Trait with all implicit definitions for scala.Option/Some/None conversions -> javascalautils.Option/Some/None .
+ * Trait with all implicit definitions for scala.Option/Some/None conversions -> javascalautils.Option/Some/None.
  */
 trait OptionImplicits {
   /** 
@@ -51,6 +53,19 @@ trait OptionImplicits {
    * @since 1.0
    */
   implicit def asJavaOption[T](underlying: Option[T]) = new OptionDecorator[T](underlying)
+}
+
+/**
+ * Trait with all implicit definitions for scala.Try/Success/Failure conversions -> javascalautils.ry/Success/Failure.
+ */
+trait TryImplicits {
+  
+    /**
+   * The implicit definition for decorating the scala.Failure class.
+   * @since 1.0
+   */
+  implicit def asJavaFailure[T](underlying: Failure[T]) = new FailureDecorator(underlying)
+
 }
 
 /**
@@ -75,4 +90,12 @@ class SomeDecorator[T](underlying: Some[T]) {
  */
 class OptionDecorator[T](underlying: Option[T]) {
   def asJava[T]() = Converters.asJavaOption(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the scala.Failure class.
+ * @since 1.0
+ */
+class FailureDecorator[T](underlying: Failure[T]) {
+  def asJava[T]() = Converters.asJavaFailure(underlying)
 }
