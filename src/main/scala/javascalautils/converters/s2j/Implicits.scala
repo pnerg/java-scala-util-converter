@@ -71,6 +71,12 @@ trait TryImplicits {
    * @since 1.0
    */
   implicit def asJavaSuccess[T](underlying: Success[T]) = new SuccessDecorator(underlying)
+
+   /**
+   * The implicit definition for decorating the scala.Try class.
+   * @since 1.0
+   */
+  implicit def asJavaTry[T](underlying: Try[T]) = new TryDecorator(underlying)
 }
 
 /**
@@ -111,4 +117,12 @@ class FailureDecorator[T](underlying: Failure[T]) {
  */
 class SuccessDecorator[T](underlying: Success[T]) {
   def asJava[T]() = Converters.asJavaSuccess(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the scala.Try class.
+ * @since 1.0
+ */
+class TryDecorator[T](underlying: Try[T]) {
+  def asJava[T]() = Converters.asJavaTry(underlying)
 }

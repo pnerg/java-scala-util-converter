@@ -19,7 +19,7 @@ import org.scalatest.FunSuite
 
 import javascalautils.{ None => JNone, Option => JOption, Some => JSome }
 import javascalautils.converters.s2j.Implicits._
-import scala.util.{Try,Success,Failure}
+import scala.util.{ Try, Success, Failure }
 
 /**
  * Test suite for Implicits scala.Try/Success/Failure conversions.
@@ -29,16 +29,29 @@ class ImplicitsTrySuite extends FunSuite {
   val expected = "Failure is not an Option"
 
   test("Scala Failure as Java") {
-        val jfailure = Failure(new Exception(expected)).asJava
-        assert(jfailure.isFailure)
-        assertResult(expected)(jfailure.failed().get.getMessage)
+    val jfailure = Failure(new Exception(expected)).asJava
+    assert(jfailure.isFailure)
+    assertResult(expected)(jfailure.failed().get.getMessage)
   }
 
+  test("Scala Success as Java") {
+    val jSuccess = Success(expected).asJava
+    assert(jSuccess.isSuccess)
+    assertResult(expected)(jSuccess.get)
+  }
 
-    test("Scala Success as Java") {
-        val jSuccess = Success(expected).asJava
-        assert(jSuccess.isSuccess)
-        assertResult(expected)(jSuccess.get)
+  test("Scala Try-Success as Java") {
+    val success: Try[String] = Success(expected)
+    val jSuccess = success.asJava
+    assert(jSuccess.isSuccess)
+    assertResult(expected)(jSuccess.get)
+  }
+
+  test("Test Try-Failure with Failure") {
+    val failure: Try[String] = Failure(new Exception(expected))
+    val jfailure = failure.asJava
+    assert(jfailure.isFailure)
+    assertResult(expected)(jfailure.failed().get.getMessage)
   }
 
 }
