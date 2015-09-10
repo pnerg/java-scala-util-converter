@@ -35,4 +35,10 @@ class ImplicitsTrySuite extends FunSuite {
   }
 
 
+    test("Scala Success as Java") {
+        val jSuccess = Success(expected).asJava
+        assert(jSuccess.isSuccess)
+        assertResult(expected)(jSuccess.get)
+  }
+
 }

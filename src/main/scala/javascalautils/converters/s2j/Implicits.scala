@@ -60,12 +60,17 @@ trait OptionImplicits {
  */
 trait TryImplicits {
   
-    /**
+   /**
    * The implicit definition for decorating the scala.Failure class.
    * @since 1.0
    */
   implicit def asJavaFailure[T](underlying: Failure[T]) = new FailureDecorator(underlying)
 
+   /**
+   * The implicit definition for decorating the scala.Success class.
+   * @since 1.0
+   */
+  implicit def asJavaSuccess[T](underlying: Success[T]) = new SuccessDecorator(underlying)
 }
 
 /**
@@ -98,4 +103,12 @@ class OptionDecorator[T](underlying: Option[T]) {
  */
 class FailureDecorator[T](underlying: Failure[T]) {
   def asJava[T]() = Converters.asJavaFailure(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the scala.Success class.
+ * @since 1.0
+ */
+class SuccessDecorator[T](underlying: Success[T]) {
+  def asJava[T]() = Converters.asJavaSuccess(underlying)
 }
