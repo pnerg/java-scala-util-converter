@@ -22,10 +22,10 @@ package javascalautils.converters
  */
 object JavaScalaUtilConverter extends Implicits
 
-trait Implicits extends j2s.Implicits
+trait Implicits extends j2s.Implicits with s2j.Implicits
 
 object Imports extends Imports
 trait Imports extends Implicits
 
 object Converters extends Converters
-trait Converters extends j2s.Converters
+trait Converters extends j2s.Converters with s2j.Converters
