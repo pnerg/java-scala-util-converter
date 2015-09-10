@@ -32,4 +32,9 @@ class ConvertersTrySuite extends FunSuite {
         assertResult(expected)(jfailure.failed().get.getMessage)
     }
 
+    test("Test asJavaSuccess") {
+        val jSuccess = asJavaSuccess(Success(expected))
+        assert(jSuccess.isSuccess)
+        assertResult(expected)(jSuccess.get)
+    }
 }
