@@ -7,6 +7,7 @@ version := "1.0-SNAPSHOT"
 //crossScalaVersions := Seq("2.9.3", "2.10.4", "2.11.5")
 scalaVersion := "2.11.4"
 
+EclipseKeys.withSource := true
 
 scalacOptions <++= scalaVersion map { (v: String) => 
   if (v.trim.startsWith("2.1"))
