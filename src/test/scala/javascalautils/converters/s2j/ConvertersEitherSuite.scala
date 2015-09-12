@@ -23,17 +23,29 @@ import javascalautils.converters.s2j.Converters._
  * @author Peter Nerg
  */
 class ConvertersEitherSuite extends FunSuite {
-    val expected = "Left is not to the Right"
+  val expected = "Left is not to the Right"
 
-    test("Test asJavaLeft") {
-        val jLeft = asJavaLeft(Left(expected))
-        assert(jLeft.isLeft())
-        assertResult(expected)(jLeft.left.get)
-    }
+  test("Test asJavaLeft") {
+    val jLeft = asJavaLeft(Left(expected))
+    assert(jLeft.isLeft())
+    assertResult(expected)(jLeft.left.get)
+  }
 
-    test("Test asJavaRight") {
-        val jright = asJavaRight(Right(expected))
-        assert(jright.isRight)
-        assertResult(expected)(jright.right.get)
-    }
+  test("Test asJavaRight") {
+    val jright = asJavaRight(Right(expected))
+    assert(jright.isRight)
+    assertResult(expected)(jright.right.get)
+  }
+
+  test("Test asJavaEither with Left") {
+    val jLeft = asJavaEither(Left(expected))
+    assert(jLeft.isLeft())
+    assertResult(expected)(jLeft.left.get)
+  }
+
+  test("Test asJavaEither with Right") {
+    val jright = asJavaEither(Right(expected))
+    assert(jright.isRight)
+    assertResult(expected)(jright.right.get)
+  }
 }

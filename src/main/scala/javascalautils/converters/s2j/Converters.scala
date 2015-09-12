@@ -99,6 +99,12 @@ trait EitherConverters {
    */
   def asJavaRight[L, R](underlying: Right[L, R]) = asRight(underlying)
 
+  /**
+   * Converts a scala.util.Either to a javascalautils.Either.
+   * @since 1.0
+   */
+  def asJavaEither[L, R](underlying: Either[L, R]) = if(underlying.isRight) asRight(underlying) else asLeft(underlying)
+
   /** Creates a javascalautils.Left out of the provided scala.util.Either. */
   private def asLeft[L, R](either: Either[L, R]) = new JLeft(either.left.get)
 
