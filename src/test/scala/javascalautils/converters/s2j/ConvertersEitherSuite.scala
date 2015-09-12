@@ -28,7 +28,12 @@ class ConvertersEitherSuite extends FunSuite {
     test("Test asJavaLeft") {
         val jLeft = asJavaLeft(Left(expected))
         assert(jLeft.isLeft())
-        assertResult(expected)(jLeft.left().get)
+        assertResult(expected)(jLeft.left.get)
     }
 
+    test("Test asJavaRight") {
+        val jright = asJavaRight(Right(expected))
+        assert(jright.isRight)
+        assertResult(expected)(jright.right.get)
+    }
 }
