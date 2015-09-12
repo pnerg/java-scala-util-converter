@@ -42,7 +42,7 @@ credentials ++= {
 }
 
 libraryDependencies ++= Seq(
-  "org.dmonix.functional" % "java-scala-utils" % "1.4",
+  "org.dmonix.functional" % "java-scala-utils" % "1.5",
   "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
 )
 
