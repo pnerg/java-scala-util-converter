@@ -16,22 +16,21 @@
 package javascalautils.converters.j2s
 
 import org.scalatest.FunSuite
+import javascalautils.concurrent.{ Future => JFuture }
+import javascalautils.converters.j2s.Implicits._
 import org.scalatest.concurrent.ScalaFutures
-import javascalautils.concurrent.{ Future => JFuture}
-import javascalautils.converters.j2s.Converters._
-import javascalautils.ThrowableFunction0
 
 /**
- * Test suite for Converters Future conversions.
+ * Test suite for Implicits Future conversions.
  * @author Peter Nerg
  */
-class ConvertersFutureSuite extends FunSuite with ScalaFutures {
-  val expected = "The Future is here"
+class ImplicitsFutureSuite extends FunSuite with ScalaFutures {
+  val expected = "The Future carries a Promise of better times"
 
-  test("Test asScalaFuture with completed Java Future") {
+  test("Java Future as Scala") {
     //create a completed Future
     val jfuture = JFuture.successful(expected)
-    val future = asScalaFuture(jfuture)
+    val future = jfuture.asScala
 
     //should be completed
     assert(future.isCompleted)
@@ -39,17 +38,4 @@ class ConvertersFutureSuite extends FunSuite with ScalaFutures {
     assert(future.futureValue === expected)
   }
 
-  test("Test asScalaFuture with not yet completed Java Future") {
-    //create a completed Future
-    val jfuture = JFuture.apply(new ThrowableFunction0[String]() {
-      def apply() = {
-        //simulates some execution time
-        Thread.sleep(50)
-        expected
-      }
-    })
-    val future = asScalaFuture(jfuture)
-  
-    assert(future.futureValue === expected)
-  }
 }

@@ -18,6 +18,8 @@ package javascalautils.converters.j2s
 import javascalautils.{Option => JOption, Some => JSome, None => JNone}
 import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
 import javascalautils.{ Either => JEither, Left => JLeft, Right => JRight }
+import javascalautils.concurrent.{Future => JFuture}
+import scala.concurrent.Future
 import Converters._
 
 /**
@@ -30,7 +32,7 @@ object Implicits extends Implicits {
 /**
  * Trait with all implicit definitions for javascalautils.Option/Some/None -> scala.Option/Some/None conversions.
  */
-trait Implicits extends OptionImplicits with TryImplicits with EitherImplicits
+trait Implicits extends OptionImplicits with TryImplicits with EitherImplicits with FutureImplicits
 
 trait OptionImplicits {
   /** 
@@ -96,6 +98,17 @@ trait EitherImplicits {
    * @since 1.0
    */
   implicit def asScalaEither[L, R](underlying: JEither[L, R]) = new EitherDecorator[L,R](underlying)
+}
+
+/**
+ * Trait with all implicit definitions for the javascalautils.concurrent.Future -> scala.concurrent.Future conversions.
+ */
+trait FutureImplicits {
+  /** 
+   * The implicit definition for decorating the javascalautils.Either class.
+   * @since 1.0
+   */
+  implicit def asScalaFuture[T](underlying: JFuture[T]) = new FutureDecorator[T](underlying)
 }
 
 /**
@@ -168,4 +181,12 @@ class RightDecorator[L,R](underlying: JRight[L,R]) {
  */
 class EitherDecorator[L,R](underlying: JEither[L,R]) {
   def asScala[L,R]() = asScalaEither(underlying)
+}
+
+/**
+ * Class containing the asScala method that will decorate the javascalautils.concurrent.Future class.
+ * @since 1.0
+ */
+class FutureDecorator[T](underlying: JFuture[T]) {
+  def asScala[T]() = asScalaFuture(underlying)
 }

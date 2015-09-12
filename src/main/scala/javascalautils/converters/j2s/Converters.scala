@@ -6,7 +6,7 @@ import javascalautils.{ Either => JEither, Left => JLeft, Right => JRight }
 import javascalautils.concurrent.{Future => JFuture}
 import scala.util.{ Try, Failure, Success }
 import scala.util.{ Either, Left, Right }
-import scala.concurrent.{Future, ExecutionContext, Promise}
+import scala.concurrent.{Future, Promise}
 import java.util.function.Consumer
 
 /**
