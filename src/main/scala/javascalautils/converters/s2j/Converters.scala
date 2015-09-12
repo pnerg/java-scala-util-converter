@@ -17,7 +17,9 @@ package javascalautils.converters.s2j
 
 import javascalautils.{ Option => JOption, Some => JSome, None => JNone }
 import javascalautils.{ Try => JTry, Success => JSuccess, Failure => JFailure }
-import scala.util.{Try,Failure,Success}
+import javascalautils.{ Either => JEither, Left => JLeft, Right => JRight }
+import scala.util.{ Try,Failure,Success }
+import scala.util.{ Either, Left, Right }
 
 /**
  * Object implementing its trait
@@ -29,7 +31,7 @@ object Converters extends Converters
  * Provides the code for converting a class from Scala -> javascalautils
  * @author Peter Nerg
  */
-trait Converters extends OptionConverters with TryConverters
+trait Converters extends OptionConverters with TryConverters with EitherConverters
 
 /**
  * Provides the code for converting scala.Option/Some/None -> javascalautils.Option/Some/None 
@@ -78,4 +80,11 @@ trait TryConverters {
    * @since 1.0
    */
   def asJavaTry[T](underlying: Try[T]) = if(underlying.isSuccess) new JSuccess(underlying.get) else new JFailure(underlying.failed.get)
+}
+
+/**
+ * Provides the code for converting scala.util.Either/Left/Right -> javascalautils.Either/Left/Right
+ * @author Peter Nerg
+ */
+trait EitherConverters {
 }
