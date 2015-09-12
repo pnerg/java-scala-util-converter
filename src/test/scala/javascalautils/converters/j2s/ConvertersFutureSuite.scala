@@ -17,9 +17,11 @@ package javascalautils.converters.j2s
 
 import org.scalatest.FunSuite
 import org.scalatest.concurrent.ScalaFutures
-import javascalautils.concurrent.{ Future => JFuture}
+import javascalautils.concurrent.{ Future => JFuture }
 import javascalautils.converters.j2s.Converters._
 import javascalautils.ThrowableFunction0
+import scala.concurrent.duration._
+import scala.concurrent.Await
 
 /**
  * Test suite for Converters Future conversions.
@@ -27,20 +29,29 @@ import javascalautils.ThrowableFunction0
  */
 class ConvertersFutureSuite extends FunSuite with ScalaFutures {
   val expected = "The Future is here"
-
-  test("Test asScalaFuture with completed Java Future") {
+  val errorMessage = "Error in the Future"
+  
+  test("Test asScalaFuture with completed successful Java Future") {
     //create a completed Future
     val jfuture = JFuture.successful(expected)
     val future = asScalaFuture(jfuture)
 
     //should be completed
     assert(future.isCompleted)
-
-    assert(future.futureValue === expected)
+    assertResult(expected)(future.futureValue)
   }
 
-  test("Test asScalaFuture with not yet completed Java Future") {
+  test("Test asScalaFuture with completed failed Java Future") {
     //create a completed Future
+    val jfuture:JFuture[String] = JFuture.failed(new Exception(errorMessage))
+    val future = asScalaFuture(jfuture)
+
+    //should be completed
+    assert(future.isCompleted)
+    assertResult(errorMessage)(future.failed.futureValue.getMessage)
+  }
+
+  test("Test asScalaFuture with Java Future what will be successful") {
     val jfuture = JFuture.apply(new ThrowableFunction0[String]() {
       def apply() = {
         //simulates some execution time
@@ -49,7 +60,20 @@ class ConvertersFutureSuite extends FunSuite with ScalaFutures {
       }
     })
     val future = asScalaFuture(jfuture)
+
+    assertResult(expected)(future.futureValue)
+  }
   
-    assert(future.futureValue === expected)
+    test("Test asScalaFuture with Java Future what will be failure") {
+    val jfuture = JFuture.apply(new ThrowableFunction0[String]() {
+      def apply() = {
+        //simulates some execution time
+        Thread.sleep(50)
+        throw new Exception(errorMessage)
+      }
+    })
+    
+    val future = asScalaFuture(jfuture)
+    assertResult(errorMessage)(future.failed.futureValue.getMessage)
   }
 }
