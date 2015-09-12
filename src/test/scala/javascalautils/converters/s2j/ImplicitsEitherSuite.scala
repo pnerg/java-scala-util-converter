@@ -38,4 +38,18 @@ class ImplicitsEitherSuite extends FunSuite {
     assertResult(expected)(jright.right.get)
   }
 
+  test("Test Either-Left as Java") {
+    val either: Either[String, Nothing] = Left(expected)
+    val jLeft = either.asJava
+    assert(jLeft.isLeft())
+    assertResult(expected)(jLeft.left.get)
+  }
+
+  test("Test Either-Right as Java") {
+    val either: Either[Nothing, String] = Right(expected)
+    val jright = either.asJava
+    assert(jright.isRight)
+    assertResult(expected)(jright.right.get)
+  }
+
 }

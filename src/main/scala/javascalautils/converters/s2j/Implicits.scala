@@ -97,7 +97,13 @@ trait EitherImplicits {
    * The implicit definition for decorating the scala.util.Right class.
    * @since 1.0
    */
-  implicit def asJavaright[L, R](underlying: Right[L, R]) = new RightDecorator(underlying)
+  implicit def asJavaRight[L, R](underlying: Right[L, R]) = new RightDecorator(underlying)
+
+  /**
+   * The implicit definition for decorating the scala.util.Either class.
+   * @since 1.0
+   */
+  implicit def asJavaEither[L, R](underlying: Either[L, R]) = new EitherDecorator(underlying)
 }
 
 /**
@@ -162,4 +168,12 @@ class LeftDecorator[L, R](underlying: Left[L, R]) {
  */
 class RightDecorator[L, R](underlying: Right[L, R]) {
   def asJava[L, R]() = Converters.asJavaRight(underlying)
+}
+
+/**
+ * Class containing the asJava method that will decorate the scala.util.Either class.
+ * @since 1.0
+ */
+class EitherDecorator[L, R](underlying: Either[L, R]) {
+  def asJava[L, R]() = Converters.asJavaEither(underlying)
 }
