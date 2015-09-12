@@ -56,24 +56,24 @@ trait OptionImplicits {
 }
 
 /**
- * Trait with all implicit definitions for scala.Try/Success/Failure conversions -> javascalautils.Try/Success/Failure.
+ * Trait with all implicit definitions for scala.util.Try/Success/Failure conversions -> javascalautils.Try/Success/Failure.
  */
 trait TryImplicits {
   
    /**
-   * The implicit definition for decorating the scala.Failure class.
+   * The implicit definition for decorating the scala.util.Failure class.
    * @since 1.0
    */
   implicit def asJavaFailure[T](underlying: Failure[T]) = new FailureDecorator(underlying)
 
    /**
-   * The implicit definition for decorating the scala.Success class.
+   * The implicit definition for decorating the scala.util.Success class.
    * @since 1.0
    */
   implicit def asJavaSuccess[T](underlying: Success[T]) = new SuccessDecorator(underlying)
 
    /**
-   * The implicit definition for decorating the scala.Try class.
+   * The implicit definition for decorating the scala.util.Try class.
    * @since 1.0
    */
   implicit def asJavaTry[T](underlying: Try[T]) = new TryDecorator(underlying)
@@ -110,7 +110,7 @@ class OptionDecorator[T](underlying: Option[T]) {
 }
 
 /**
- * Class containing the asScala method that will decorate the scala.Failure class.
+ * Class containing the asScala method that will decorate the scala.util.Failure class.
  * @since 1.0
  */
 class FailureDecorator[T](underlying: Failure[T]) {
@@ -118,7 +118,7 @@ class FailureDecorator[T](underlying: Failure[T]) {
 }
 
 /**
- * Class containing the asScala method that will decorate the scala.Success class.
+ * Class containing the asScala method that will decorate the scala.util.Success class.
  * @since 1.0
  */
 class SuccessDecorator[T](underlying: Success[T]) {
@@ -126,7 +126,7 @@ class SuccessDecorator[T](underlying: Success[T]) {
 }
 
 /**
- * Class containing the asScala method that will decorate the scala.Try class.
+ * Class containing the asScala method that will decorate the scala.util.Try class.
  * @since 1.0
  */
 class TryDecorator[T](underlying: Try[T]) {
