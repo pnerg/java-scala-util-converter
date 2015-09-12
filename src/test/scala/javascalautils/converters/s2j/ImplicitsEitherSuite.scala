@@ -24,12 +24,18 @@ import javascalautils.converters.s2j.Implicits._
  * @author Peter Nerg
  */
 class ImplicitsEitherSuite extends FunSuite {
-    val expected = "Right is rarely Left"
+  val expected = "Right is rarely Left"
 
-    test("Scala Left as Java") {
-        val jLeft = Left(expected).asJava
-        assert(jLeft.isLeft())
-        assertResult(expected)(jLeft.left().get)
-    }
+  test("Scala Left as Java") {
+    val jLeft = Left(expected).asJava
+    assert(jLeft.isLeft())
+    assertResult(expected)(jLeft.left().get)
+  }
+
+  test("Scala Right as Java") {
+    val jright = Right(expected).asJava
+    assert(jright.isRight)
+    assertResult(expected)(jright.right.get)
+  }
 
 }
