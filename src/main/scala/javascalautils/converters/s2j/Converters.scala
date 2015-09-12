@@ -64,19 +64,19 @@ trait OptionConverters {
 trait TryConverters {
   
   /**
-   * Converts a scala.Failure to a javascalautils.Failure.
+   * Converts a scala.util.Failure to a javascalautils.Failure.
    * @since 1.0
    */
   def asJavaFailure[T](underlying: Failure[T]) = new JFailure(underlying.failed.get)
   
   /**
-   * Converts a scala.Success to a javascalautils.Success.
+   * Converts a scala.util.Success to a javascalautils.Success.
    * @since 1.0
    */
   def asJavaSuccess[T](underlying: Success[T]) = new JSuccess(underlying.get)
   
   /**
-   * Converts a scala.Try to a javascalautils.Try.
+   * Converts a scala.util.Try to a javascalautils.Try.
    * @since 1.0
    */
   def asJavaTry[T](underlying: Try[T]) = if(underlying.isSuccess) new JSuccess(underlying.get) else new JFailure(underlying.failed.get)
