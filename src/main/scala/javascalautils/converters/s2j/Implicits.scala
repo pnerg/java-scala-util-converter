@@ -101,7 +101,7 @@ trait EitherImplicits {
 }
 
 /**
- * Class containing the asScala method that will decorate the scala.None class.
+ * Class containing the asJava method that will decorate the scala.None class.
  * @since 1.0
  */
 class NoneDecorator[T](underlying: None.type) {
@@ -109,7 +109,7 @@ class NoneDecorator[T](underlying: None.type) {
 }
 
 /**
- * Class containing the asScala method that will decorate the scala.Some class.
+ * Class containing the asJava method that will decorate the scala.Some class.
  * @since 1.0
  */
 class SomeDecorator[T](underlying: Some[T]) {
@@ -117,7 +117,7 @@ class SomeDecorator[T](underlying: Some[T]) {
 }
 
 /**
- * Class containing the asScala method that will decorate the scala.Option class.
+ * Class containing the asJava method that will decorate the scala.Option class.
  * @since 1.0
  */
 class OptionDecorator[T](underlying: Option[T]) {
@@ -125,7 +125,7 @@ class OptionDecorator[T](underlying: Option[T]) {
 }
 
 /**
- * Class containing the asScala method that will decorate the scala.util.Failure class.
+ * Class containing the asJava method that will decorate the scala.util.Failure class.
  * @since 1.0
  */
 class FailureDecorator[T](underlying: Failure[T]) {
@@ -133,7 +133,7 @@ class FailureDecorator[T](underlying: Failure[T]) {
 }
 
 /**
- * Class containing the asScala method that will decorate the scala.util.Success class.
+ * Class containing the asJava method that will decorate the scala.util.Success class.
  * @since 1.0
  */
 class SuccessDecorator[T](underlying: Success[T]) {
@@ -141,7 +141,7 @@ class SuccessDecorator[T](underlying: Success[T]) {
 }
 
 /**
- * Class containing the asScala method that will decorate the scala.util.Try class.
+ * Class containing the asJava method that will decorate the scala.util.Try class.
  * @since 1.0
  */
 class TryDecorator[T](underlying: Try[T]) {
@@ -149,7 +149,7 @@ class TryDecorator[T](underlying: Try[T]) {
 }
 
 /**
- * Class containing the asScala method that will decorate the scala.util.Left class.
+ * Class containing the asJava method that will decorate the scala.util.Left class.
  * @since 1.0
  */
 class LeftDecorator[L, R](underlying: Left[L, R]) {
@@ -157,7 +157,7 @@ class LeftDecorator[L, R](underlying: Left[L, R]) {
 }
 
 /**
- * Class containing the asScala method that will decorate the scala.util.Right class.
+ * Class containing the asJava method that will decorate the scala.util.Right class.
  * @since 1.0
  */
 class RightDecorator[L, R](underlying: Right[L, R]) {
