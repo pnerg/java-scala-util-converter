@@ -30,7 +30,7 @@ object Implicits extends Implicits
 /**
  * Trait with all implicit definitions for Scala -> Java conversions
  */
-trait Implicits extends OptionImplicits with TryImplicits
+trait Implicits extends OptionImplicits with TryImplicits with EitherImplicits
 
 /**
  * Trait with all implicit definitions for scala.Option/Some/None conversions -> javascalautils.Option/Some/None.
@@ -56,7 +56,7 @@ trait OptionImplicits {
 }
 
 /**
- * Trait with all implicit definitions for scala.Try/Success/Failure conversions -> javascalautils.ry/Success/Failure.
+ * Trait with all implicit definitions for scala.Try/Success/Failure conversions -> javascalautils.Try/Success/Failure.
  */
 trait TryImplicits {
   
@@ -77,6 +77,12 @@ trait TryImplicits {
    * @since 1.0
    */
   implicit def asJavaTry[T](underlying: Try[T]) = new TryDecorator(underlying)
+}
+
+/**
+ * Trait with all implicit definitions for scala.Either/Left/Right conversions -> javascalautils.Either/Left/Right.
+ */
+trait EitherImplicits {
 }
 
 /**
