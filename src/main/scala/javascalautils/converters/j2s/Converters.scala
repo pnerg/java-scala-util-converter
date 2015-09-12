@@ -3,8 +3,11 @@ package javascalautils.converters.j2s
 import javascalautils.{ Option => JOption, Some => JSome, None => JNone }
 import javascalautils.{ Try => JTry, Success => JSuccess, Failure => JFailure }
 import javascalautils.{ Either => JEither, Left => JLeft, Right => JRight }
+import javascalautils.concurrent.{Future => JFuture}
 import scala.util.{ Try, Failure, Success }
 import scala.util.{ Either, Left, Right }
+import scala.concurrent.{Future, ExecutionContext, Promise}
+import java.util.function.Consumer
 
 /**
  * Object implementing its trait
@@ -16,7 +19,7 @@ object Converters extends Converters
  * Provides the code for converting a class from javascalautils -> Scala
  * @author Peter Nerg
  */
-trait Converters extends OptionConverters  with TryConverters with EitherConverters
+trait Converters extends OptionConverters  with TryConverters with EitherConverters with FutureConverters
 
 /**
  * Provides the code for converting javascalautils.Option/Some/None -> scala.Option/Some/None
@@ -94,4 +97,26 @@ trait EitherConverters {
 
   /** Creates a scala.util.Left out of the provided javascalautils.Either. */
   private def asLeft[L,R](either:JEither[L,R]) = Left(either.left.get)
+}
+
+/**
+ * Provides the code for converting a javascalautils.concurrent.Future -> scala.concurrent.Future
+ * @author Peter Nerg
+ * @since 1.0
+ */
+trait FutureConverters {
+  
+  /**
+   * Converts a javascalautils.concurrent.Future to a scala.concurrent.Future.
+   * @since 1.0
+   */
+  def asScalaFuture[T](underlying: JFuture[T]) = {
+    val promise = Promise[T]
+    underlying.onComplete(new Consumer[JTry[T]]() {
+      def accept(result: JTry[T]) {
+        promise.complete(Converters.asScalaTry(result))
+      }
+    })
+    promise.future    
+  }
 }
