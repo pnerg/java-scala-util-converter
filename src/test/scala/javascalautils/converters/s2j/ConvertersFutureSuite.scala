@@ -28,15 +28,44 @@ import java.util.concurrent.TimeUnit
 class ConvertersFutureSuite extends FunSuite {
   implicit val ec = ExecutionContext.global
   val expected = "The Future is right here!"
+  val errorMessage = "Ooops the Future did not happen"
 
-  test("Test asJavaFuture") {
+  test("Test asJavaFuture with completed successful Scala Future") {
+    val future = Future.successful(expected)
+    val jfuture = asJavaFuture(future)
+    assertResult(expected)(jfuture.result(1, TimeUnit.SECONDS))
+  }
+
+  test("Test asJavaFuture with completed failed Scala Future") {
+    val future = Future.failed(new Exception(errorMessage))
+    val jfuture: JFuture[String] = asJavaFuture(future)
+    val recoveredFuture = jfuture.recover(new java.util.function.Function[Throwable, String]() {
+      def apply(t: Throwable) = t.getMessage
+    })
+    assertResult(errorMessage)(recoveredFuture.result(1, TimeUnit.SECONDS))
+  }
+
+  test("Test asJavaFuture with Scala Future what will be successful") {
     val future = Future {
       Thread.sleep(50)
       expected
     }
-    
+
     val jfuture = asJavaFuture(future)
     assertResult(expected)(jfuture.result(1, TimeUnit.SECONDS))
+  }
+
+  test("Test asJavaFuture with Scala Future what will be failure") {
+    val future = Future {
+      Thread.sleep(50)
+      throw new Exception(errorMessage)
+    }
+
+    val jfuture: JFuture[String] = asJavaFuture(future)
+    val recoveredFuture = jfuture.recover(new java.util.function.Function[Throwable, String]() {
+      def apply(t: Throwable) = t.getMessage
+    })
+    assertResult(errorMessage)(recoveredFuture.result(1, TimeUnit.SECONDS))
   }
 
 }

@@ -21,8 +21,7 @@ import javascalautils.{ Either => JEither, Left => JLeft, Right => JRight }
 import javascalautils.concurrent.{Future => JFuture, Promise => JPromise}
 import scala.util.{ Try, Failure, Success }
 import scala.util.{ Either, Left, Right }
-import scala.concurrent.Future
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{Future,ExecutionContext}
 
 /**
  * Object implementing its trait
