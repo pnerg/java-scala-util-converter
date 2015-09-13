@@ -18,8 +18,11 @@ package javascalautils.converters.s2j
 import javascalautils.{ Option => JOption, Some => JSome, None => JNone }
 import javascalautils.{ Try => JTry, Success => JSuccess, Failure => JFailure }
 import javascalautils.{ Either => JEither, Left => JLeft, Right => JRight }
+import javascalautils.concurrent.{Future => JFuture, Promise => JPromise}
 import scala.util.{ Try, Failure, Success }
 import scala.util.{ Either, Left, Right }
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext
 
 /**
  * Object implementing its trait
@@ -31,7 +34,7 @@ object Converters extends Converters
  * Provides the code for converting a class from Scala -> javascalautils
  * @author Peter Nerg
  */
-trait Converters extends OptionConverters with TryConverters with EitherConverters
+trait Converters extends OptionConverters with TryConverters with EitherConverters with FutureTrait
 
 /**
  * Provides the code for converting scala.Option/Some/None -> javascalautils.Option/Some/None
@@ -79,7 +82,7 @@ trait TryConverters {
    * Converts a scala.util.Try to a javascalautils.Try.
    * @since 1.0
    */
-  def asJavaTry[T](underlying: Try[T]) = if (underlying.isSuccess) new JSuccess(underlying.get) else new JFailure(underlying.failed.get)
+  def asJavaTry[T](underlying: Try[T]):JTry[T] = if (underlying.isSuccess) new JSuccess(underlying.get) else new JFailure(underlying.failed.get)
 }
 
 /**
@@ -111,3 +114,21 @@ trait EitherConverters {
   /** Creates a javascalautils.Right out of the provided scala.util.Either. */
   private def asRight[L, R](either: Either[L, R]) = new JRight(either.right.get)
 } 
+
+/**
+ * Provides the code for converting scala.concurrent.Future -> javascalautils.concurrent.Future
+ * @author Peter Nerg
+ * @since 1.0
+ */
+trait FutureTrait {
+  
+  /**
+   * Converts a scala.concurrent.Future -> javascalautils.concurrent.Future.
+   * @since 1.0
+   */
+  def asJavaFuture[T](underlying: Future[T])(implicit ec: ExecutionContext) = { 
+    val promise = JPromise.apply[T]()
+    underlying.onComplete(t => promise.complete(Converters.asJavaTry(t)))
+    promise.future
+  }
+}
