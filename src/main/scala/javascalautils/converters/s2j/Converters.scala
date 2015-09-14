@@ -33,7 +33,7 @@ object Converters extends Converters
  * Provides the code for converting a class from Scala -> javascalautils
  * @author Peter Nerg
  */
-trait Converters extends OptionConverters with TryConverters with EitherConverters with FutureTrait
+trait Converters extends OptionConverters with TryConverters with EitherConverters with FutureConverters
 
 /**
  * Provides the code for converting scala.Option/Some/None -> javascalautils.Option/Some/None
@@ -119,7 +119,7 @@ trait EitherConverters {
  * @author Peter Nerg
  * @since 1.0
  */
-trait FutureTrait {
+trait FutureConverters {
   
   /**
    * Converts a scala.concurrent.Future -> javascalautils.concurrent.Future.

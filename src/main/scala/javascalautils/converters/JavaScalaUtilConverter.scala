@@ -18,14 +18,24 @@
 package javascalautils.converters
 
 /**
+ * Allows for implicit conversion of the supported data types. 
  * @author Peter Nerg
+ * @since 1.0
  */
-object JavaScalaUtilConverter extends Implicits
+object JavaScalaUtilImplicits extends Implicits
 
 trait Implicits extends j2s.Implicits with s2j.Implicits
 
-object Imports extends Imports
-trait Imports extends Implicits
+/**
+ * Allows for explicit conversion of the supported data types. 
+ * @author Peter Nerg
+ * @since 1.0
+ */
+object JavaScalaUtilConverters extends Converters
 
-object Converters extends Converters
+/**
+ * Is an aggregate of the j2s.Converters and s2j.Converters.
+ * @author Peter Nerg
+ * @since 1.0
+ */
 trait Converters extends j2s.Converters with s2j.Converters

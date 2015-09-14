@@ -26,8 +26,7 @@ import Converters._
  * The object for all implicit Java -> Scala conversions.
  * @author Peter Nerg
  */
-object Implicits extends Implicits {
-}
+object Implicits extends Implicits
 
 /**
  * Trait with all implicit definitions for javascalautils.Option/Some/None -> scala.Option/Some/None conversions.

@@ -45,7 +45,7 @@ class ConvertersFutureSuite extends FunSuite {
     assertResult(errorMessage)(recoveredFuture.result(1, TimeUnit.SECONDS))
   }
 
-  test("Test asJavaFuture with Scala Future what will be successful") {
+  test("Test asJavaFuture with Scala Future that will be successful") {
     val future = Future {
       Thread.sleep(50)
       expected
@@ -55,7 +55,7 @@ class ConvertersFutureSuite extends FunSuite {
     assertResult(expected)(jfuture.result(1, TimeUnit.SECONDS))
   }
 
-  test("Test asJavaFuture with Scala Future what will be failure") {
+  test("Test asJavaFuture with Scala Future that will be failure") {
     val future = Future {
       Thread.sleep(50)
       throw new Exception(errorMessage)

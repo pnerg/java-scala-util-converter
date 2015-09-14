@@ -47,7 +47,7 @@ class ImplicitsFutureSuite extends FunSuite {
     assertResult(errorMessage)(recoveredFuture.result(1, TimeUnit.SECONDS))
   }
 
-  test("Scala Failure as Java with Future what will be successful") {
+  test("Scala Failure as Java with Future that will be successful") {
     val future = Future {
       Thread.sleep(50)
       expected
@@ -57,7 +57,7 @@ class ImplicitsFutureSuite extends FunSuite {
     assertResult(expected)(jfuture.result(1, TimeUnit.SECONDS))
   }
 
-  test("Scala Failure as Java with Future what will be failure") {
+  test("Scala Failure as Java with Future that will be failure") {
     val future:Future[String] = Future {
       Thread.sleep(50)
       throw new Exception(errorMessage)
