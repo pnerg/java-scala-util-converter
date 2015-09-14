@@ -24,6 +24,11 @@ package javascalautils.converters
  */
 object JavaScalaUtilImplicits extends Implicits
 
+/**
+ * Is an aggregate of the j2s.Implicits and s2j.Implicits.
+ * @author Peter Nerg
+ * @since 1.0
+ */
 trait Implicits extends j2s.Implicits with s2j.Implicits
 
 /**
