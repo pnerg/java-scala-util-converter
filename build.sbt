@@ -64,7 +64,6 @@ pomExtra := (
     <license>
       <name>Apache</name>
       <url>http://www.opensource.org/licenses/Apache-2.0</url>
-      <distribution>repo</distribution>
     </license>
   </licenses>
   <scm>
