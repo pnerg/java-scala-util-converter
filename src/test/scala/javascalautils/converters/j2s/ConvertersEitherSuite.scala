@@ -41,7 +41,7 @@ class ConvertersEitherSuite extends FunSuite {
 
   test("Test asScalaEither with Right") {
     val right:Either[String, String] = asScalaEither(new JRight[String,String](expected))
-z    assert(right.isRight)
+    assert(right.isRight)
     assertResult(expected)(right.right.get)
   }
 
