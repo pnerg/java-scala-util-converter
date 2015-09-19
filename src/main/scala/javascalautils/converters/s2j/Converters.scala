@@ -42,18 +42,24 @@ trait Converters extends OptionConverters with TryConverters with EitherConverte
 trait OptionConverters {
   /**
    * Converts a scala.None to a javascalautils.None.
+   * @param underlying The type to be converted
+   * @return The converted type
    * @since 1.0
    */
   def asJavaNone[T](underlying: None.type) = new JNone
 
   /**
    * Converts a scala.Some to a javascalautils.Some.
+   * @param underlying The type to be converted
+   * @return The converted type
    * @since 1.0
    */
   def asJavaSome[T](underlying: Some[T]) = new JSome(underlying.get)
 
   /**
    * Converts a scala.Option to a javascalautils.Option.
+   * @param underlying The type to be converted
+   * @return The converted type
    * @since 1.0
    */
   def asJavaOption[T](underlying: Option[T]) = if (underlying.isDefined) new JSome(underlying.get) else new JNone
@@ -67,18 +73,24 @@ trait TryConverters {
 
   /**
    * Converts a scala.util.Failure to a javascalautils.Failure.
+   * @param underlying The type to be converted
+   * @return The converted type
    * @since 1.0
    */
   def asJavaFailure[T](underlying: Failure[T]) = new JFailure(underlying.failed.get)
 
   /**
    * Converts a scala.util.Success to a javascalautils.Success.
+   * @param underlying The type to be converted
+   * @return The converted type
    * @since 1.0
    */
   def asJavaSuccess[T](underlying: Success[T]) = new JSuccess(underlying.get)
 
   /**
    * Converts a scala.util.Try to a javascalautils.Try.
+   * @param underlying The type to be converted
+   * @return The converted type
    * @since 1.0
    */
   def asJavaTry[T](underlying: Try[T]):JTry[T] = if (underlying.isSuccess) new JSuccess(underlying.get) else new JFailure(underlying.failed.get)
@@ -91,18 +103,24 @@ trait TryConverters {
 trait EitherConverters {
   /**
    * Converts a scala.util.Left to a javascalautils.Left.
+   * @param underlying The type to be converted
+   * @return The converted type
    * @since 1.0
    */
   def asJavaLeft[L, R](underlying: Left[L, R]) = asLeft(underlying)
 
   /**
    * Converts a scala.util.Left to a javascalautils.Right.
+   * @param underlying The type to be converted
+   * @return The converted type
    * @since 1.0
    */
   def asJavaRight[L, R](underlying: Right[L, R]) = asRight(underlying)
 
   /**
    * Converts a scala.util.Either to a javascalautils.Either.
+   * @param underlying The type to be converted
+   * @return The converted type
    * @since 1.0
    */
   def asJavaEither[L, R](underlying: Either[L, R]) = if(underlying.isRight) asRight(underlying) else asLeft(underlying)
@@ -123,6 +141,8 @@ trait FutureConverters {
   
   /**
    * Converts a scala.concurrent.Future -> javascalautils.concurrent.Future.
+   * @param underlying The type to be converted
+   * @return The converted type
    * @since 1.0
    */
   def asJavaFuture[T](underlying: Future[T])(implicit ec: ExecutionContext) = { 

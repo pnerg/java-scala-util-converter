@@ -39,18 +39,24 @@ trait Implicits extends OptionImplicits with TryImplicits with EitherImplicits w
 trait OptionImplicits {
   /**
    * The implicit definition for decorating the scala.None class.
+   * @param underlying The type to be converted
+   * @return The decorator class
    * @since 1.0
    */
   implicit def asJavaNone[T](underlying: None.type) = new NoneDecorator[T](underlying)
 
   /**
    * The implicit definition for decorating the scala.Some class.
+   * @param underlying The type to be converted
+   * @return The decorator class
    * @since 1.0
    */
   implicit def asJavaSome[T](underlying: Some[T]) = new SomeDecorator[T](underlying)
 
   /**
    * The implicit definition for decorating the scala.Option class.
+   * @param underlying The type to be converted
+   * @return The decorator class
    * @since 1.0
    */
   implicit def asJavaOption[T](underlying: Option[T]) = new OptionDecorator[T](underlying)
@@ -64,18 +70,24 @@ trait TryImplicits {
 
   /**
    * The implicit definition for decorating the scala.util.Failure class.
+   * @param underlying The type to be converted
+   * @return The decorator class
    * @since 1.0
    */
   implicit def asJavaFailure[T](underlying: Failure[T]) = new FailureDecorator(underlying)
 
   /**
    * The implicit definition for decorating the scala.util.Success class.
+   * @param underlying The type to be converted
+   * @return The decorator class
    * @since 1.0
    */
   implicit def asJavaSuccess[T](underlying: Success[T]) = new SuccessDecorator(underlying)
 
   /**
    * The implicit definition for decorating the scala.util.Try class.
+   * @param underlying The type to be converted
+   * @return The decorator class
    * @since 1.0
    */
   implicit def asJavaTry[T](underlying: Try[T]) = new TryDecorator(underlying)
@@ -89,18 +101,24 @@ trait EitherImplicits {
 
   /**
    * The implicit definition for decorating the scala.util.Left class.
+   * @param underlying The type to be converted
+   * @return The decorator class
    * @since 1.0
    */
   implicit def asJavaLeft[L, R](underlying: Left[L, R]) = new LeftDecorator(underlying)
 
   /**
    * The implicit definition for decorating the scala.util.Right class.
+   * @param underlying The type to be converted
+   * @return The decorator class
    * @since 1.0
    */
   implicit def asJavaRight[L, R](underlying: Right[L, R]) = new RightDecorator(underlying)
 
   /**
    * The implicit definition for decorating the scala.util.Either class.
+   * @param underlying The type to be converted
+   * @return The decorator class
    * @since 1.0
    */
   implicit def asJavaEither[L, R](underlying: Either[L, R]) = new EitherDecorator(underlying)
@@ -113,6 +131,9 @@ trait EitherImplicits {
 trait FutureImplicits {
   /**
    * The implicit definition for decorating the scala.concurrent.Future conversions class.
+   * @param underlying The type to be converted
+   * @param ec The ExecutionContext to use
+   * @return The decorator class
    * @since 1.0
    */
   implicit def asJavaFuture[T](underlying: Future[T])(implicit ec: ExecutionContext) = new FutureDecorator(underlying)
@@ -120,110 +141,140 @@ trait FutureImplicits {
 
 /**
  * Class containing the asJava method that will decorate the scala.None class.
+ * @constructor creates an instance of the decorator for this type
+ * @param underlying The type to be converted
  * @since 1.0
  */
 class NoneDecorator[T](underlying: None.type) {
   /**
    * Converts the provided type to its javascalautils equivalence.
+   * @return The converted type
    */
   def asJava[T]() = Converters.asJavaNone(underlying)
 }
 
 /**
  * Class containing the asJava method that will decorate the scala.Some class.
+ * @constructor creates an instance of the decorator for this type
+ * @param underlying The type to be converted
  * @since 1.0
  */
 class SomeDecorator[T](underlying: Some[T]) {
   /**
    * Converts the provided type to its javascalautils equivalence.
+   * @return The converted type
    */
   def asJava[T]() = Converters.asJavaSome(underlying)
 }
 
 /**
  * Class containing the asJava method that will decorate the scala.Option class.
+ * @constructor creates an instance of the decorator for this type
+ * @param underlying The type to be converted
  * @since 1.0
  */
 class OptionDecorator[T](underlying: Option[T]) {
   /**
    * Converts the provided type to its javascalautils equivalence.
+   * @return The converted type
    */
   def asJava[T]() = Converters.asJavaOption(underlying)
 }
 
 /**
  * Class containing the asJava method that will decorate the scala.util.Failure class.
+ * @constructor creates an instance of the decorator for this type
+ * @param underlying The type to be converted
  * @since 1.0
  */
 class FailureDecorator[T](underlying: Failure[T]) {
   /**
    * Converts the provided type to its javascalautils equivalence.
+   * @return The converted type
    */
   def asJava[T]() = Converters.asJavaFailure(underlying)
 }
 
 /**
  * Class containing the asJava method that will decorate the scala.util.Success class.
+ * @constructor creates an instance of the decorator for this type
+ * @param underlying The type to be converted
  * @since 1.0
  */
 class SuccessDecorator[T](underlying: Success[T]) {
   /**
    * Converts the provided type to its javascalautils equivalence.
+   * @return The converted type
    */
   def asJava[T]() = Converters.asJavaSuccess(underlying)
 }
 
 /**
  * Class containing the asJava method that will decorate the scala.util.Try class.
+ * @constructor creates an instance of the decorator for this type
+ * @param underlying The type to be converted
  * @since 1.0
  */
 class TryDecorator[T](underlying: Try[T]) {
   /**
    * Converts the provided type to its javascalautils equivalence.
+   * @return The converted type
    */
   def asJava[T]() = Converters.asJavaTry(underlying)
 }
 
 /**
  * Class containing the asJava method that will decorate the scala.util.Left class.
+ * @constructor creates an instance of the decorator for this type
+ * @param underlying The type to be converted
  * @since 1.0
  */
 class LeftDecorator[L, R](underlying: Left[L, R]) {
   /**
    * Converts the provided type to its javascalautils equivalence.
+   * @return The converted type
    */
   def asJava[L, R]() = Converters.asJavaLeft(underlying)
 }
 
 /**
  * Class containing the asJava method that will decorate the scala.util.Right class.
+ * @constructor creates an instance of the decorator for this type
+ * @param underlying The type to be converted
  * @since 1.0
  */
 class RightDecorator[L, R](underlying: Right[L, R]) {
   /**
    * Converts the provided type to its javascalautils equivalence.
+   * @return The converted type
    */
   def asJava[L, R]() = Converters.asJavaRight(underlying)
 }
 
 /**
  * Class containing the asJava method that will decorate the scala.util.Either class.
+ * @constructor creates an instance of the decorator for this type
+ * @param underlying The type to be converted
  * @since 1.0
  */
 class EitherDecorator[L, R](underlying: Either[L, R]) {
   /**
    * Converts the provided type to its javascalautils equivalence.
+   * @return The converted type
    */
   def asJava[L, R]() = Converters.asJavaEither(underlying)
 }
 
 /**
- * Class containing the asJava method that will decorate the scala.util.Either class.
+ * Class containing the asJava method that will decorate the scala.concurrent.Future class.
+ * @constructor creates an instance of the decorator for this type
+ * @param underlying The type to be converted
  * @since 1.0
  */
 class FutureDecorator[T](underlying: Future[T])(implicit ec: ExecutionContext) {
   /**
    * Converts the provided type to its javascalautils equivalence.
+   * @return The converted type
    */
   def asJava[T]() = Converters.asJavaFuture(underlying)(ec)
 }
