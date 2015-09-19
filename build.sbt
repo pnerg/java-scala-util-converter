@@ -1,13 +1,9 @@
 name := "java-scala-utils-converter"
-
 organization := "org.dmonix.functional"
-
 version := "1.0-SNAPSHOT"
 
-//crossScalaVersions := Seq("2.9.3", "2.10.4", "2.11.5")
 scalaVersion := "2.11.4"
 
-EclipseKeys.withSource := true
 
 scalacOptions <++= scalaVersion map { (v: String) => 
   if (v.trim.startsWith("2.1"))
@@ -15,6 +11,41 @@ scalacOptions <++= scalaVersion map { (v: String) =>
   else
     Seq("-deprecation", "-unchecked")
 }
+
+
+libraryDependencies ++= Seq(
+  "org.dmonix.functional" % "java-scala-utils" % "1.5",
+  "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
+)
+
+//sbt-coverage settings
+ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := {
+  if (scalaBinaryVersion.value == "2.10") false
+  else false
+}
+
+//setting for eclipse plugin to download sources
+EclipseKeys.withSource := true
+
+//----------------------------
+//Needed to be able to perform automated release mgmt
+//----------------------------
+import ReleaseTransformations._
+
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  runClean,
+  runTest,
+  setReleaseVersion,
+  commitReleaseVersion,
+  tagRelease,
+  ReleaseStep(action = Command.process("publishSigned", _)),
+  setNextVersion,
+  commitNextVersion,
+  ReleaseStep(action = Command.process("sonatypeReleaseAll", _)),
+  pushChanges
+)
 
 publishTo <<= version { (v: String) =>
   val nexus = "https://oss.sonatype.org/"
@@ -24,6 +55,9 @@ publishTo <<= version { (v: String) =>
     Some("releases" at nexus+"service/local/staging/deploy/maven2")
 }
 
+//----------------------------
+//info for where and how to publish artifacts
+//----------------------------
 credentials ++= {
   val sonatype = ("Sonatype Nexus Repository Manager", "oss.sonatype.org")
   def loadMavenCredentials(file: java.io.File) : Seq[Credentials] = {
@@ -42,28 +76,18 @@ credentials ++= {
   }
 }
 
-libraryDependencies ++= Seq(
-  "org.dmonix.functional" % "java-scala-utils" % "1.5",
-  "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
-)
-
-ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := {
-  if (scalaBinaryVersion.value == "2.10") false
-  else false
-}
-
+//----------------------------
+//needed to create the proper pom.xml for publishing to mvn central
+//----------------------------
 publishMavenStyle := true
-
 publishArtifact in Test := false
-
 pomIncludeRepository := { _ => false }
-
 pomExtra := (
   <url>https://github.com/pnerg/java-scala-util-converter</url>
   <licenses>
     <license>
       <name>Apache</name>
-      <url>http://www.opensource.org/licenses/Apache-2.0</url>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
     </license>
   </licenses>
   <scm>
