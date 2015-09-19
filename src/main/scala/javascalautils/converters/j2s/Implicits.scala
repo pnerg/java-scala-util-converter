@@ -15,38 +15,44 @@
  */
 package javascalautils.converters.j2s
 
-import javascalautils.{Option => JOption, Some => JSome, None => JNone}
-import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
+import javascalautils.{ Option => JOption, Some => JSome, None => JNone }
+import javascalautils.{ Try => JTry, Success => JSuccess, Failure => JFailure }
 import javascalautils.{ Either => JEither, Left => JLeft, Right => JRight }
-import javascalautils.concurrent.{Future => JFuture}
+import javascalautils.concurrent.{ Future => JFuture }
 import scala.concurrent.Future
 import Converters._
 
 /**
  * The object for all implicit Java -> Scala conversions.
  * @author Peter Nerg
+ * @since 1.0
  */
 object Implicits extends Implicits
 
 /**
- * Trait with all implicit definitions for javascalautils.Option/Some/None -> scala.Option/Some/None conversions.
+ * Aggregate of all traits for converting from javascalautil -> Scala.
+ * @since 1.0
  */
 trait Implicits extends OptionImplicits with TryImplicits with EitherImplicits with FutureImplicits
 
+/**
+ * Trait with all implicit definitions for the javascalautils.Option/Some/None -> scala.Option/Some/None conversions.
+ * @since 1.0
+ */
 trait OptionImplicits {
-  /** 
+  /**
    * The implicit definition for decorating the javascalautils.Option class.
    * @since 1.0
    */
   implicit def asScalaOption[T](underlying: JOption[T]) = new OptionDecorator[T](underlying)
-  
-  /** 
+
+  /**
    * The implicit definition for decorating the javascalautils.None class.
    * @since 1.0
    */
   implicit def asScalaNone[T](underlying: JNone[T]) = new NoneDecorator[T](underlying)
 
-  /** 
+  /**
    * The implicit definition for decorating the javascalautils.Some class.
    * @since 1.0
    */
@@ -55,21 +61,22 @@ trait OptionImplicits {
 
 /**
  * Trait with all implicit definitions for the javascalautils.Try/Success/Failure -> scala.util.Try/Success/Failure conversions.
+ * @since 1.0
  */
 trait TryImplicits {
-  /** 
+  /**
    * The implicit definition for decorating the javascalautils.Failure class.
    * @since 1.0
    */
   implicit def asScalaFailure[T](underlying: JFailure[T]) = new FailureDecorator[T](underlying)
 
-  /** 
+  /**
    * The implicit definition for decorating the javascalautils.Success class.
    * @since 1.0
    */
   implicit def asScalaSuccess[T](underlying: JSuccess[T]) = new SuccessDecorator[T](underlying)
 
-  /** 
+  /**
    * The implicit definition for decorating the javascalautils.Try class.
    * @since 1.0
    */
@@ -78,33 +85,35 @@ trait TryImplicits {
 
 /**
  * Trait with all implicit definitions for the javascalautils.Either/Left/Right -> scala.util.Either/Left/Right conversions.
+ * @since 1.0
  */
 trait EitherImplicits {
-  /** 
+  /**
    * The implicit definition for decorating the javascalautils.Left class.
    * @since 1.0
    */
-  implicit def asScalaLeft[L, R](underlying: JLeft[L, R]) = new LeftDecorator[L,R](underlying)
+  implicit def asScalaLeft[L, R](underlying: JLeft[L, R]) = new LeftDecorator[L, R](underlying)
 
-  /** 
+  /**
    * The implicit definition for decorating the javascalautils.Right class.
    * @since 1.0
    */
-  implicit def asScalaRight[L, R](underlying: JRight[L, R]) = new RightDecorator[L,R](underlying)
+  implicit def asScalaRight[L, R](underlying: JRight[L, R]) = new RightDecorator[L, R](underlying)
 
-  /** 
+  /**
    * The implicit definition for decorating the javascalautils.Either class.
    * @since 1.0
    */
-  implicit def asScalaEither[L, R](underlying: JEither[L, R]) = new EitherDecorator[L,R](underlying)
+  implicit def asScalaEither[L, R](underlying: JEither[L, R]) = new EitherDecorator[L, R](underlying)
 }
 
 /**
  * Trait with all implicit definitions for the javascalautils.concurrent.Future -> scala.concurrent.Future conversions.
+ * @since 1.0
  */
 trait FutureImplicits {
-  /** 
-   * The implicit definition for decorating the javascalautils.Either class.
+  /**
+   * The implicit definition for decorating the javascalautils.concurrent.Future class.
    * @since 1.0
    */
   implicit def asScalaFuture[T](underlying: JFuture[T]) = new FutureDecorator[T](underlying)
@@ -115,7 +124,10 @@ trait FutureImplicits {
  * @since 1.0
  */
 class OptionDecorator[T](underlying: JOption[T]) {
-  def asScala[T]() = asScalaOption(underlying) 
+  /**
+   * Converts the provided type to its Scala equivalence.
+   */
+  def asScala[T]() = asScalaOption(underlying)
 }
 
 /**
@@ -123,6 +135,9 @@ class OptionDecorator[T](underlying: JOption[T]) {
  * @since 1.0
  */
 class NoneDecorator[T](underlying: JNone[T]) {
+  /**
+   * Converts the provided type to its Scala equivalence.
+   */
   def asScala[T]() = asScalaNone(underlying)
 }
 
@@ -131,6 +146,9 @@ class NoneDecorator[T](underlying: JNone[T]) {
  * @since 1.0
  */
 class SomeDecorator[T](underlying: JSome[T]) {
+  /**
+   * Converts the provided type to its Scala equivalence.
+   */
   def asScala[T]() = asScalaSome(underlying)
 }
 
@@ -139,6 +157,9 @@ class SomeDecorator[T](underlying: JSome[T]) {
  * @since 1.0
  */
 class FailureDecorator[T](underlying: JFailure[T]) {
+  /**
+   * Converts the provided type to its Scala equivalence.
+   */
   def asScala[T]() = asScalaFailure(underlying)
 }
 
@@ -147,6 +168,9 @@ class FailureDecorator[T](underlying: JFailure[T]) {
  * @since 1.0
  */
 class SuccessDecorator[T](underlying: JSuccess[T]) {
+  /**
+   * Converts the provided type to its Scala equivalence.
+   */
   def asScala[T]() = asScalaSuccess(underlying)
 }
 
@@ -155,6 +179,9 @@ class SuccessDecorator[T](underlying: JSuccess[T]) {
  * @since 1.0
  */
 class TryDecorator[T](underlying: JTry[T]) {
+  /**
+   * Converts the provided type to its Scala equivalence.
+   */
   def asScala[T]() = asScalaTry(underlying)
 }
 
@@ -162,24 +189,34 @@ class TryDecorator[T](underlying: JTry[T]) {
  * Class containing the asScala method that will decorate the javascalautils.Left class.
  * @since 1.0
  */
-class LeftDecorator[L,R](underlying: JLeft[L,R]) {
-  def asScala[L,R]() = asScalaLeft(underlying)
+class LeftDecorator[L, R](underlying: JLeft[L, R]) {
+  /**
+   * Converts the provided type to its Scala equivalence.
+   */
+  def asScala[L, R]() = asScalaLeft(underlying)
 }
 
 /**
  * Class containing the asScala method that will decorate the javascalautils.Right class.
  * @since 1.0
  */
-class RightDecorator[L,R](underlying: JRight[L,R]) {
-  def asScala[L,R]() = asScalaRight(underlying)
+class RightDecorator[L, R](underlying: JRight[L, R]) {
+  /**
+   * Converts the provided type to its Scala equivalence.
+   */
+  def asScala[L, R]() = asScalaRight(underlying)
 }
 
 /**
  * Class containing the asScala method that will decorate the javascalautils.Either class.
  * @since 1.0
  */
-class EitherDecorator[L,R](underlying: JEither[L,R]) {
-  def asScala[L,R]() = asScalaEither(underlying)
+class EitherDecorator[L, R](underlying: JEither[L, R]) {
+  /**
+   * Converts the provided type to its Scala equivalence.
+   * @since 1.0
+   */
+  def asScala[L, R]() = asScalaEither(underlying)
 }
 
 /**
@@ -187,5 +224,9 @@ class EitherDecorator[L,R](underlying: JEither[L,R]) {
  * @since 1.0
  */
 class FutureDecorator[T](underlying: JFuture[T]) {
+  /**
+   * Converts the provided type to its Scala equivalence.
+   * @since 1.0
+   */
   def asScala[T]() = asScalaFuture(underlying)
 }

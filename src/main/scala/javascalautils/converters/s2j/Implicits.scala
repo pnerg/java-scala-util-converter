@@ -17,7 +17,7 @@ package javascalautils.converters.s2j
 
 import scala.util.{ Try, Failure, Success }
 import scala.util.{ Either, Left, Right }
-import scala.concurrent.{Future,ExecutionContext}
+import scala.concurrent.{ Future, ExecutionContext }
 
 /**
  * The object for all implicit Scala -> Java conversions.
@@ -27,12 +27,14 @@ import scala.concurrent.{Future,ExecutionContext}
 object Implicits extends Implicits
 
 /**
- * Trait with all implicit definitions for Scala -> Java conversions
+ * Aggregate of all traits for converting from Scala -> javascalautil.
+ * @since 1.0
  */
 trait Implicits extends OptionImplicits with TryImplicits with EitherImplicits with FutureImplicits
 
 /**
  * Trait with all implicit definitions for scala.Option/Some/None conversions -> javascalautils.Option/Some/None.
+ * @since 1.0
  */
 trait OptionImplicits {
   /**
@@ -56,6 +58,7 @@ trait OptionImplicits {
 
 /**
  * Trait with all implicit definitions for scala.util.Try/Success/Failure conversions -> javascalautils.Try/Success/Failure.
+ * @since 1.0
  */
 trait TryImplicits {
 
@@ -120,6 +123,9 @@ trait FutureImplicits {
  * @since 1.0
  */
 class NoneDecorator[T](underlying: None.type) {
+  /**
+   * Converts the provided type to its javascalautils equivalence.
+   */
   def asJava[T]() = Converters.asJavaNone(underlying)
 }
 
@@ -128,6 +134,9 @@ class NoneDecorator[T](underlying: None.type) {
  * @since 1.0
  */
 class SomeDecorator[T](underlying: Some[T]) {
+  /**
+   * Converts the provided type to its javascalautils equivalence.
+   */
   def asJava[T]() = Converters.asJavaSome(underlying)
 }
 
@@ -136,6 +145,9 @@ class SomeDecorator[T](underlying: Some[T]) {
  * @since 1.0
  */
 class OptionDecorator[T](underlying: Option[T]) {
+  /**
+   * Converts the provided type to its javascalautils equivalence.
+   */
   def asJava[T]() = Converters.asJavaOption(underlying)
 }
 
@@ -144,6 +156,9 @@ class OptionDecorator[T](underlying: Option[T]) {
  * @since 1.0
  */
 class FailureDecorator[T](underlying: Failure[T]) {
+  /**
+   * Converts the provided type to its javascalautils equivalence.
+   */
   def asJava[T]() = Converters.asJavaFailure(underlying)
 }
 
@@ -152,6 +167,9 @@ class FailureDecorator[T](underlying: Failure[T]) {
  * @since 1.0
  */
 class SuccessDecorator[T](underlying: Success[T]) {
+  /**
+   * Converts the provided type to its javascalautils equivalence.
+   */
   def asJava[T]() = Converters.asJavaSuccess(underlying)
 }
 
@@ -160,6 +178,9 @@ class SuccessDecorator[T](underlying: Success[T]) {
  * @since 1.0
  */
 class TryDecorator[T](underlying: Try[T]) {
+  /**
+   * Converts the provided type to its javascalautils equivalence.
+   */
   def asJava[T]() = Converters.asJavaTry(underlying)
 }
 
@@ -168,6 +189,9 @@ class TryDecorator[T](underlying: Try[T]) {
  * @since 1.0
  */
 class LeftDecorator[L, R](underlying: Left[L, R]) {
+  /**
+   * Converts the provided type to its javascalautils equivalence.
+   */
   def asJava[L, R]() = Converters.asJavaLeft(underlying)
 }
 
@@ -176,6 +200,9 @@ class LeftDecorator[L, R](underlying: Left[L, R]) {
  * @since 1.0
  */
 class RightDecorator[L, R](underlying: Right[L, R]) {
+  /**
+   * Converts the provided type to its javascalautils equivalence.
+   */
   def asJava[L, R]() = Converters.asJavaRight(underlying)
 }
 
@@ -184,6 +211,9 @@ class RightDecorator[L, R](underlying: Right[L, R]) {
  * @since 1.0
  */
 class EitherDecorator[L, R](underlying: Either[L, R]) {
+  /**
+   * Converts the provided type to its javascalautils equivalence.
+   */
   def asJava[L, R]() = Converters.asJavaEither(underlying)
 }
 
@@ -192,5 +222,8 @@ class EitherDecorator[L, R](underlying: Either[L, R]) {
  * @since 1.0
  */
 class FutureDecorator[T](underlying: Future[T])(implicit ec: ExecutionContext) {
+  /**
+   * Converts the provided type to its javascalautils equivalence.
+   */
   def asJava[T]() = Converters.asJavaFuture(underlying)(ec)
 }

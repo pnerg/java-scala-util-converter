@@ -12,7 +12,6 @@ scalacOptions <++= scalaVersion map { (v: String) =>
     Seq("-deprecation", "-unchecked")
 }
 
-
 libraryDependencies ++= Seq(
   "org.dmonix.functional" % "java-scala-utils" % "1.5",
   "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
@@ -34,6 +33,8 @@ publishTo <<= version { (v: String) =>
   else
     Some("releases" at nexus+"service/local/staging/deploy/maven2")
 }
+
+
 
 //----------------------------
 //info for where and how to publish artifacts
