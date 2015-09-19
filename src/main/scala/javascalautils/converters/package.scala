@@ -13,10 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
- package javascalautils.converters
+ package javascalautils
  
  /**
  * Contains the main class for the converters.
  * @author Peter Nerg
  */
-package object child {}
+package object converters {}

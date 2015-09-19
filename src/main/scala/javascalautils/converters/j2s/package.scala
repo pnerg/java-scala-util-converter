@@ -13,10 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
- package javascalautils.converters.j2s
+ package javascalautils.converters
  
 /**
  * Contains the converters from Java -> Scala
  * @author Peter Nerg
  */
-package object child {}
+package object j2s {}

@@ -13,10 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
- package javascalautils.converters.s2j
+ package javascalautils.converters
  
 /**
  * Contains the converters from Scala -> Java
  * @author Peter Nerg
  */
- package object child {}
+ package object s2j {}
