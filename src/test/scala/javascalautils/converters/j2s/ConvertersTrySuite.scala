@@ -17,7 +17,6 @@ package javascalautils.converters.j2s
 
 import org.scalatest.FunSuite
 
-import javascalautils.{ None => JNone, Option => JOption, Some => JSome }
 import javascalautils.converters.j2s.Converters._
 import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
 

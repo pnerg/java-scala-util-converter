@@ -30,6 +30,7 @@ trait Converters extends OptionConverters with TryConverters with EitherConverte
  * val optionSome = asScalaOption(new JSome("Some is never None"))
  *
  * val none = asScalaNone(new JNone[String]())
+ * 
  * val some = asScalaSome(new JSome("Some is never None"))
  * }}}
  * @author Peter Nerg
@@ -62,6 +63,16 @@ trait OptionConverters {
 
 /**
  * Provides the code for converting javascalautils.Try/Success/Failure -> scala.util.Try/Success/Failure
+ * {{{
+ * import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
+ * 
+ * val trySuccess = asScalaTry(new JSuccess("Success is never a Failure"))
+ * val tryFailure = asScalaTry(new JFailure(new Exception("Error, terror")))
+ * 
+ * val failure = asScalaFailure(new JFailure(new Exception("Error, terror")))
+ * 
+ * val success = asScalaSuccess(new JSuccess("Success is never a Failure"))
+ * }}}
  * @author Peter Nerg
  */
 trait TryConverters {
