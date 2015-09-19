@@ -23,6 +23,15 @@ trait Converters extends OptionConverters with TryConverters with EitherConverte
 
 /**
  * Provides the code for converting javascalautils.Option/Some/None -> scala.Option/Some/None
+ * {{{
+ * import javascalautils.{ None => JNone, Option => JOption, Some => JSome }
+ *
+ * val optionNone = asScalaOption(new JNone())
+ * val optionSome = asScalaOption(new JSome("Some is never None"))
+ *
+ * val none = asScalaNone(new JNone[String]())
+ * val some = asScalaSome(new JSome("Some is never None"))
+ * }}}
  * @author Peter Nerg
  */
 trait OptionConverters {

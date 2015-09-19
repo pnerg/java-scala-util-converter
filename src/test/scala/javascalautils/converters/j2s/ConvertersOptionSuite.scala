@@ -28,14 +28,12 @@ class ConvertersOptionSuite extends FunSuite {
   val expected = "Some is never None"
 
   test("Test asScalaOption with None") {
-    val jnone: JOption[String] = new JNone()
-    val option = asScalaOption(jnone)
+    val option = asScalaOption(new JNone())
     assert(option.isEmpty)
   }
 
   test("Test asScalaOption with Some") {
-    val jsome: JOption[String] = new JSome(expected)
-    val option = asScalaOption(jsome)
+    val option = asScalaOption(new JSome(expected))
     assert(option.isDefined)
     assertResult(expected)(option.get)
   }

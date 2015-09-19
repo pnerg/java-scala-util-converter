@@ -16,7 +16,11 @@
  package javascalautils
  
  /**
- * Contains the main class for the converters.
+ * Contains the main objects for the converters.
+ * ==Overview==
+ * This library provides the mechanisms to convert between type provided by javascalautils to their Scala equivalence and vice-versa. <br>
+ * One can either perform explicit conversions by using the proper method or one do implicit conversions using the decorator pattern provided by Scalas implicit method declaration.
+ * 
  * @author Peter Nerg
  */
 package object converters {}
