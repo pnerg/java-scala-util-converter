@@ -27,26 +27,6 @@ ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := {
 //setting for eclipse plugin to download sources
 EclipseKeys.withSource := true
 
-//----------------------------
-//Needed to be able to perform automated release mgmt
-//----------------------------
-import ReleaseTransformations._
-
-releaseProcess := Seq[ReleaseStep](
-  checkSnapshotDependencies,
-  inquireVersions,
-  runClean,
-  runTest,
-  setReleaseVersion,
-  commitReleaseVersion,
-  tagRelease,
-  ReleaseStep(action = Command.process("publishSigned", _)),
-  setNextVersion,
-  commitNextVersion,
-  ReleaseStep(action = Command.process("sonatypeReleaseAll", _)),
-  pushChanges
-)
-
 publishTo <<= version { (v: String) =>
   val nexus = "https://oss.sonatype.org/"
   if (v.endsWith("-SNAPSHOT"))
