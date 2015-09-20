@@ -84,6 +84,9 @@ trait TryConverters {
 
   /**
    * Converts a scala.util.Failure to a javascalautils.Failure.
+   * {{{
+   * val jfailure = asJavaFailure(Failure(new Exception("Error, terror!!!")))
+   * }}}
    * @param underlying The type to be converted
    * @return The converted type
    * @since 1.0
@@ -92,6 +95,9 @@ trait TryConverters {
 
   /**
    * Converts a scala.util.Success to a javascalautils.Success.
+   * {{{
+   * val jSuccess = asJavaSuccess(Success("Success is not Failure"))
+   * }}}
    * @param underlying The type to be converted
    * @return The converted type
    * @since 1.0
@@ -100,6 +106,10 @@ trait TryConverters {
 
   /**
    * Converts a scala.util.Try to a javascalautils.Try.
+   * {{{
+   * val jTryFailure = asJavaTry(Failure(new Exception("Error, terror!!!")))
+   * val jTrySuccess = asJavaTry(Success("Success is not Failure"))
+   * }}}
    * @param underlying The type to be converted
    * @return The converted type
    * @since 1.0
