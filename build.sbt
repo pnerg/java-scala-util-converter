@@ -12,6 +12,8 @@ scalacOptions <++= scalaVersion map { (v: String) =>
     Seq("-deprecation", "-unchecked")
 }
 
+scalacOptions in (Compile, doc) ++= Seq("-doc-root-content", baseDirectory.value+"/src/main/scaladoc/root-doc.txt")
+
 libraryDependencies ++= Seq(
   "org.dmonix.functional" % "java-scala-utils" % "1.5",
   "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
