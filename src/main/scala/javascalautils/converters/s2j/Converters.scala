@@ -43,6 +43,9 @@ trait Converters extends OptionConverters with TryConverters with EitherConverte
 trait OptionConverters {
   /**
    * Converts a scala.None to a javascalautils.None.
+   * {{{
+   * val jnone = asJavaNone(None)
+   * }}}
    * @param underlying The type to be converted
    * @return The converted type
    * @since 1.0
@@ -51,6 +54,9 @@ trait OptionConverters {
 
   /**
    * Converts a scala.Some to a javascalautils.Some.
+   * {{{
+   * val jsome = asJavaSome(Some("Some is never None"))
+   * }}}
    * @param underlying The type to be converted
    * @return The converted type
    * @since 1.0
@@ -59,6 +65,10 @@ trait OptionConverters {
 
   /**
    * Converts a scala.Option to a javascalautils.Option.
+   * {{{
+   * val joptionSome = asJavaOption(Some("Some is never None"))
+   * val joptionNone = asJavaOption(None)
+   * }}}
    * @param underlying The type to be converted
    * @return The converted type
    * @since 1.0
