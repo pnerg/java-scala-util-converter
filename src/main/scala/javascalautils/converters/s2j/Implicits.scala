@@ -27,7 +27,12 @@ import scala.concurrent.{ Future, ExecutionContext }
 object Implicits extends Implicits
 
 /**
- * Aggregate of all traits for converting from Scala -> javascalautil.
+ * Aggregate of all traits for converting from Scala -> javascalautil. <br>
+ * Example on usage:
+ * {{{
+ * import javascalautils.converters.s2j.Implicits._
+ * val jsome = Some("Some is never None").asJava
+ * }}}
  * @since 1.0
  */
 trait Implicits extends OptionImplicits with TryImplicits with EitherImplicits with FutureImplicits

@@ -18,7 +18,7 @@
  /**
  * Contains the main objects for the converters.
  * ==Overview==
- * This library provides the mechanisms to convert between type provided by javascalautils to their Scala equivalence and vice-versa. <br>
+ * This library provides the mechanisms to convert between types provided by javascalautils to their Scala equivalence and vice-versa. <br>
  * One can either perform explicit conversions by using a specific converter method or do implicit conversions using the decorator pattern provided by Scalas implicit method declaration.
  * ===Explicit Conversion===
  * This is the mechanism for performing the conversion by invoking a specific method taking the type you want to and converting it to its Scala or Java equivalence. <br>
@@ -44,7 +44,7 @@
  * ===Implicit Conversion===
  * This utilizes the implicit mechanism in Scala to decorate any given class with new methods. <br>
  * More precisely this library provides ''asScala'' methods on all supported Java types and ''asJava'' methods on all supported Scala types. <br>
- * This ''magic'' is enabled by having right imports in scope. <br>
+ * This ''magic'' is enabled by having the right imports in scope. <br>
  * Just as with the explicit converters the implicit ones are divided into Java -> Scala, [[j2s.Implicits]] as well as from Scala -> Java, [[s2j.Implicits]]. <br>
  * Or one can choose to use the aggregate implicit [[JavaScalaUtilImplicits]]. <br>
  * It's again a matter of having the right imports in scope.
@@ -61,6 +61,7 @@
  * import javascalautils.{Some => JSome}
  * 
  * val some = new JSome("Some is never None").asScala
+ * val jsome = Some("Some is never None").asJava
  * }}}
  * @author Peter Nerg
  */

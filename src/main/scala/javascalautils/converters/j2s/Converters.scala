@@ -10,14 +10,20 @@ import scala.concurrent.{ Future, Promise }
 import java.util.function.Consumer
 
 /**
- * Object implementing all converter traits
+ * Object implementing all converter traits.
  * @author Peter Nerg
  */
 object Converters extends Converters
 
 /**
  * Aggregates the various traits for converting from javascalautils -> Scala. <br>
- * Refer to the various methods for code examples.
+ * Example on usage: 
+ * {{{
+ * import javascalautils.converters.j2s.Converters._
+ * import javascalautils.{Some => JSome}
+ * val optionSome = asScalaOption(new JSome("Some is never None"))
+ * }}}
+ * Refer to the various methods on this object for further code examples.
  * @author Peter Nerg
  */
 trait Converters extends OptionConverters with TryConverters with EitherConverters with FutureConverters

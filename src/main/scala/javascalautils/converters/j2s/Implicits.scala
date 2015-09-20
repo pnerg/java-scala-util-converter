@@ -30,7 +30,13 @@ import Converters._
 object Implicits extends Implicits
 
 /**
- * Aggregate of all traits for converting from javascalautil -> Scala.
+ * Aggregate of all traits for converting from javascalautil -> Scala. <br>
+ * Example on usage:
+ * {{{
+ * import javascalautils.converters.j2s.Implicits._
+ * import javascalautils.{Some => JSome}
+ * val some = new JSome("Some is never None").asScala
+ * }}}
  * @since 1.0
  */
 trait Implicits extends OptionImplicits with TryImplicits with EitherImplicits with FutureImplicits

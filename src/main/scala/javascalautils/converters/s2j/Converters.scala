@@ -24,14 +24,19 @@ import scala.util.{ Either, Left, Right }
 import scala.concurrent.{ Future, ExecutionContext }
 
 /**
- * Object implementing all converter traits
+ * Object implementing all converter traits.
  * @author Peter Nerg
  */
 object Converters extends Converters
 
 /**
  * Aggregates the various traits for converting from Scala -> javascalautils. <br>
- * Refer to the various methods for code examples.
+ * Example on usage: 
+ * {{{
+ * import javascalautils.converters.s2j.Converters._
+ * val joptionSome = asJavaOption(Some("Some is never None"))
+ * }}}
+ * Refer to the various methods on this object for further code examples.
  * @author Peter Nerg
  */
 trait Converters extends OptionConverters with TryConverters with EitherConverters with FutureConverters

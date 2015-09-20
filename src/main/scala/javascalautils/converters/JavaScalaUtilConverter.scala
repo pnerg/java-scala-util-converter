@@ -18,7 +18,14 @@ package javascalautils.converters
 
 /**
  * Allows for implicit conversion of the supported data types. <br>
- * Is an aggregate of the [[j2s.Implicits]] and [[s2j.Implicits]].
+ * Is an aggregate of the [[j2s.Implicits]] and [[s2j.Implicits]]. <br>
+ * Example on usage:
+ * {{{
+ * import javascalautils.converters.JavaScalaUtilImplicits._
+ * import javascalautils.{Some => JSome}
+ * val some = new JSome("Some is never None").asScala
+ * val jsome = Some("Some is never None").asJava
+ * }}}
  * @author Peter Nerg
  * @since 1.0
  */
@@ -27,7 +34,14 @@ object JavaScalaUtilImplicits extends j2s.Implicits with s2j.Implicits
 /**
  * Allows for explicit conversion of the supported data types. <br>
  * Is an aggregate of the [[j2s.Converters]] and [[s2j.Converters]]. <br>
- * Refer to the various methods for code examples.
+ * Example on usage: 
+ * {{{
+ * import javascalautils.converters.JavaScalaUtilConverters._
+ * import javascalautils.{Some => JSome}
+ * val optionSome = asScalaOption(new JSome("Some is never None"))
+ * val joptionSome = asJavaOption(Some("Some is never None"))
+ * }}}
+ * Refer to the various methods on this object for further code examples.
  * @author Peter Nerg
  * @since 1.0
  */
