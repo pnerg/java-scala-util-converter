@@ -12,7 +12,9 @@ scalacOptions <++= scalaVersion map { (v: String) =>
     Seq("-deprecation", "-unchecked")
 }
 
+scalacOptions in (Compile, doc) ++= Seq("-doc-title", "Java Scala Utils Converter API")
 scalacOptions in (Compile, doc) ++= Seq("-doc-root-content", baseDirectory.value+"/src/main/scaladoc/root-doc.txt")
+scalacOptions in (Compile, doc) ++= Seq("-doc-footer", "Copyright (c) 2015 Peter Nerg, Apache License v2.0.")
 
 libraryDependencies ++= Seq(
   "org.dmonix.functional" % "java-scala-utils" % "1.5",
