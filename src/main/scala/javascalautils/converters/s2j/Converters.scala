@@ -124,6 +124,9 @@ trait TryConverters {
 trait EitherConverters {
   /**
    * Converts a scala.util.Left to a javascalautils.Left.
+   * {{{
+   * val jLeft = asJavaLeft(Left("Left is not to the Right"))
+   * }}}
    * @param underlying The type to be converted
    * @return The converted type
    * @since 1.0
@@ -131,7 +134,10 @@ trait EitherConverters {
   def asJavaLeft[L, R](underlying: Left[L, R]) = asLeft(underlying)
 
   /**
-   * Converts a scala.util.Left to a javascalautils.Right.
+   * Converts a scala.util.Right to a javascalautils.Right.
+   * {{{
+   * val jright = asJavaRight(Right("Left is not to the Right"))
+   * }}}
    * @param underlying The type to be converted
    * @return The converted type
    * @since 1.0
@@ -140,6 +146,10 @@ trait EitherConverters {
 
   /**
    * Converts a scala.util.Either to a javascalautils.Either.
+   * {{{
+   * val jEitherLeft = asJavaEither(Left("Left is not to the Right"))
+   * val jEitherRight = asJavaEither(Right("Left is not to the Right"))
+   * }}}
    * @param underlying The type to be converted
    * @return The converted type
    * @since 1.0
