@@ -1,5 +1,5 @@
 ==Overview==
-This library provides the mechanisms to convert between types provided by javascalautils to their Scala equivalence and vice-versa. <br>
+This library provides the mechanisms to convert between types provided by [[https://github.com/pnerg/java-scala-util javascalautils]] to their Scala equivalence and vice-versa. <br>
 One can either perform explicit conversions by using a specific converter method or do implicit conversions using the decorator pattern provided by Scalas implicit method declaration.
 ===Explicit Conversion===
 This is the mechanism for performing the conversion by invoking a specific method taking the type you want to and converting it to its Scala or Java equivalence. <br>
@@ -19,6 +19,7 @@ E.g.
 import javascalautils.{Some => JSome}
 
 val optionSome = asScalaOption(new JSome("Some is never None"))
+val joptionSome = asJavaOption(Some("Some is never None"))
 }}}
  
 Refer to the aggregate object [[javascalautils.converters.JavaScalaUtilConverters]] for a list of all converter methods and examples on usage.
@@ -44,6 +45,9 @@ import javascalautils.{Some => JSome}
 val some = new JSome("Some is never None").asScala
 val jsome = Some("Some is never None").asJava
 }}}
+
+==Full Documentation==
+[[https://github.com/pnerg/java-scala-util-converter/wiki Wiki]]
 
 ==License==
 Copyright 2015 Peter Nerg <br>
