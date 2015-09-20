@@ -16,7 +16,7 @@
  package javascalautils.converters
  
 /**
- * Contains the converters from Scala -> Java
+ * Contains the converters from Scala -> Java, both implicit as well as explicit.
  * @author Peter Nerg
  */
  package object s2j {}

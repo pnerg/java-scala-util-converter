@@ -16,7 +16,7 @@
  package javascalautils.converters
  
 /**
- * Contains the converters from Java -> Scala
+ * Contains the converters from Java -> Scala, both implicit as well as explicit.
  * @author Peter Nerg
  */
 package object j2s {}
