@@ -24,13 +24,14 @@ import scala.util.{ Either, Left, Right }
 import scala.concurrent.{Future,ExecutionContext}
 
 /**
- * Object implementing its trait
+ * Object implementing all converter traits
  * @author Peter Nerg
  */
 object Converters extends Converters
 
 /**
- * Provides the code for converting a class from Scala -> javascalautils
+ * Aggregates the various traits for converting from Scala -> javascalautils. <br>
+ * Refer to the various methods for code examples.
  * @author Peter Nerg
  */
 trait Converters extends OptionConverters with TryConverters with EitherConverters with FutureConverters
