@@ -18,10 +18,10 @@ package javascalautils.converters.s2j
 import javascalautils.{ Option => JOption, Some => JSome, None => JNone }
 import javascalautils.{ Try => JTry, Success => JSuccess, Failure => JFailure }
 import javascalautils.{ Either => JEither, Left => JLeft, Right => JRight }
-import javascalautils.concurrent.{Future => JFuture, Promise => JPromise}
+import javascalautils.concurrent.{ Future => JFuture, Promise => JPromise }
 import scala.util.{ Try, Failure, Success }
 import scala.util.{ Either, Left, Right }
-import scala.concurrent.{Future,ExecutionContext}
+import scala.concurrent.{ Future, ExecutionContext }
 
 /**
  * Object implementing all converter traits
@@ -114,7 +114,7 @@ trait TryConverters {
    * @return The converted type
    * @since 1.0
    */
-  def asJavaTry[T](underlying: Try[T]):JTry[T] = if (underlying.isSuccess) new JSuccess(underlying.get) else new JFailure(underlying.failed.get)
+  def asJavaTry[T](underlying: Try[T]): JTry[T] = if (underlying.isSuccess) new JSuccess(underlying.get) else new JFailure(underlying.failed.get)
 }
 
 /**
@@ -154,14 +154,14 @@ trait EitherConverters {
    * @return The converted type
    * @since 1.0
    */
-  def asJavaEither[L, R](underlying: Either[L, R]) = if(underlying.isRight) asRight(underlying) else asLeft(underlying)
+  def asJavaEither[L, R](underlying: Either[L, R]) = if (underlying.isRight) asRight(underlying) else asLeft(underlying)
 
   /** Creates a javascalautils.Left out of the provided scala.util.Either. */
   private def asLeft[L, R](either: Either[L, R]) = new JLeft(either.left.get)
 
   /** Creates a javascalautils.Right out of the provided scala.util.Either. */
   private def asRight[L, R](either: Either[L, R]) = new JRight(either.right.get)
-} 
+}
 
 /**
  * Provides the code for converting scala.concurrent.Future -> javascalautils.concurrent.Future
@@ -169,14 +169,21 @@ trait EitherConverters {
  * @since 1.0
  */
 trait FutureConverters {
-  
+
   /**
    * Converts a scala.concurrent.Future -> javascalautils.concurrent.Future.
+   * {{{
+   * val future = Future {
+   *   Thread.sleep(50)
+   *   "The Future is right here!"
+   * }
+   * val jfuture = asJavaFuture(future)
+   * }}}
    * @param underlying The type to be converted
    * @return The converted type
    * @since 1.0
    */
-  def asJavaFuture[T](underlying: Future[T])(implicit ec: ExecutionContext) = { 
+  def asJavaFuture[T](underlying: Future[T])(implicit ec: ExecutionContext) = {
     val promise = JPromise.apply[T]()
     underlying.onComplete(t => promise.complete(Converters.asJavaTry(t)))
     promise.future
