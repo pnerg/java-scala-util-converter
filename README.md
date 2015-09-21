@@ -1,5 +1,5 @@
 # java-scala-util-converter
-[![Build Status](https://travis-ci.org/pnerg/java-scala-util-converter.svg?branch=master)](https://travis-ci.org/pnerg/java-scala-util-converter) [![codecov.io](http://codecov.io/github/pnerg/java-scala-util-converter/coverage.svg?branch=master)](http://codecov.io/github/pnerg/java-scala-util-converter?branch=master)
+[![Build Status](https://travis-ci.org/pnerg/java-scala-util-converter.svg?branch=master)](https://travis-ci.org/pnerg/java-scala-util-converter) [![codecov.io](http://codecov.io/github/pnerg/java-scala-util-converter/coverage.svg?branch=master)](http://codecov.io/github/pnerg/java-scala-util-converter?branch=master) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.dmonix.functional/java-scala-utils-converter_2.11/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/org.dmonix.functional/java-scala-utils-converter_2.11)
   
 # Introduction
 
