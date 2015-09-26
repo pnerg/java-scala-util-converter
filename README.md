@@ -6,6 +6,8 @@
 This library provides the mechanisms to convert between types provided by [java-scala-util](https://github.com/pnerg/java-scala-util) to their Scala equivalence and vice-versa.  
 One can either perform explicit conversions by using a specific converter method or do implicit conversions using the decorator pattern provided by Scalas implicit method declaration
 
+This allows you to seamlessly traverse between Java and Scala using core functionality such as _Try/Success/Failure_, _Option/None/Some_,  _Either/Left/Right_ and non-blocking _Futures_ and having these types automatically translated to/from Java/Scala.
+
 ## Documentation
 For further reading on usage refer to the [Wiki](https://github.com/pnerg/java-scala-util-converter/wiki)
 
