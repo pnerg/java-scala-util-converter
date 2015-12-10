@@ -25,4 +25,7 @@ project/plugins/project/
 .worksheet
 /bin/
 
+# automatic backup files
+*~
+
 sbt
