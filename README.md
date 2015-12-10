@@ -18,4 +18,4 @@ Java 8 is required as the [java-scala-utils](https://github.com/pnerg/java-scala
 ##Download
 The binaries can be downloaded from [Maven Central](http://search.maven.org/).
 Refer to the releases for details
-* [v1.0](https://github.com/pnerg/java-scala-util-converter/releases/tag/v1.0)
+* [v1.0.1](https://github.com/pnerg/java-scala-util-converter/releases/tag/v1.0.1)
