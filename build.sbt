@@ -1,8 +1,8 @@
 name := "java-scala-utils-converter"
 organization := "org.dmonix.functional"
-version := "1.1-SNAPSHOT"
+version := "1.0.1-SNAPSHOT"
 
-scalaVersion := "2.11.4"
+scalaVersion := "2.11.7"
 
 
 scalacOptions <++= scalaVersion map { (v: String) => 
