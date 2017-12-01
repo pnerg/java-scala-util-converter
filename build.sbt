@@ -3,6 +3,7 @@ organization := "org.dmonix.functional"
 version := "1.1-SNAPSHOT"
 
 scalaVersion := "2.11.7"
+crossScalaVersions := Seq("2.11.7", "2.12.4")
 
 
 scalacOptions <++= scalaVersion map { (v: String) => 
@@ -18,14 +19,14 @@ scalacOptions in (Compile, doc) ++= Seq("-doc-footer", "Copyright (c) 2015 Peter
 
 libraryDependencies ++= Seq(
   "org.dmonix.functional" % "java-scala-utils" % "1.5",
-  "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
+  "org.scalatest" %% "scalatest" % "3.0.4" % "test"
 )
 
 //sbt-coverage settings
-ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := {
-  if (scalaBinaryVersion.value == "2.10") false
-  else false
-}
+//ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := {
+//  if (scalaBinaryVersion.value == "2.10") false
+//  else false  // WTF?
+//}
 
 //setting for eclipse plugin to download sources
 EclipseKeys.withSource := true
