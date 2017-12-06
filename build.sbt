@@ -1,6 +1,6 @@
 name := "java-scala-utils-converter"
 organization := "org.dmonix.functional"
-version := "1.1"
+version := "1.2-SNAPSHOT"
 
 scalaVersion := "2.11.7"
 crossScalaVersions := Seq("2.11.7", "2.12.4")
