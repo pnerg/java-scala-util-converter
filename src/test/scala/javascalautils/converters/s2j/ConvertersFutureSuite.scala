@@ -15,10 +15,13 @@
  */
 package javascalautils.converters.s2j
 
+import javascalautils.ThrowableFunction1
 import org.scalatest.funsuite.AnyFunSuite
 import javascalautils.converters.s2j.Converters._
-import scala.concurrent.{ Future, ExecutionContext }
-import javascalautils.concurrent.{ Future => JFuture }
+
+import scala.concurrent.{ExecutionContext, Future}
+import javascalautils.concurrent.{Future => JFuture}
+
 import java.util.concurrent.TimeUnit
 
 /**
@@ -39,7 +42,7 @@ class ConvertersFutureSuite extends AnyFunSuite {
   test("Test asJavaFuture with completed failed Scala Future") {
     val future = Future.failed(new Exception(errorMessage))
     val jfuture: JFuture[String] = asJavaFuture(future)
-    val recoveredFuture = jfuture.recover(new java.util.function.Function[Throwable, String]() {
+    val recoveredFuture = jfuture.recover(new ThrowableFunction1[Throwable, String]() {
       def apply(t: Throwable) = t.getMessage
     })
     assertResult(errorMessage)(recoveredFuture.result(1, TimeUnit.SECONDS))
@@ -62,7 +65,7 @@ class ConvertersFutureSuite extends AnyFunSuite {
     }
 
     val jfuture: JFuture[String] = asJavaFuture(future)
-    val recoveredFuture = jfuture.recover(new java.util.function.Function[Throwable, String]() {
+    val recoveredFuture = jfuture.recover(new ThrowableFunction1[Throwable, String]() {
       def apply(t: Throwable) = t.getMessage
     })
     assertResult(errorMessage)(recoveredFuture.result(1, TimeUnit.SECONDS))
