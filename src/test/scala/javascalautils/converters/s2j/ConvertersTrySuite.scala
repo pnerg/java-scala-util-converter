@@ -15,7 +15,7 @@
  */
 package javascalautils.converters.s2j
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import javascalautils.converters.s2j.Converters._
 import scala.util.{Try,Success,Failure}
 
@@ -23,7 +23,7 @@ import scala.util.{Try,Success,Failure}
  * Test suite for Converters scala.Try/Success/Failure conversions.
  * @author Peter Nerg
  */
-class ConvertersTrySuite extends FunSuite {
+class ConvertersTrySuite extends AnyFunSuite {
     val expected = "Success is not Failure"
 
     test("Test asJavaFailure") {

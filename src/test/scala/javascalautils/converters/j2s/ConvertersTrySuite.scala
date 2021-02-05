@@ -15,7 +15,7 @@
  */
 package javascalautils.converters.j2s
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import javascalautils.converters.j2s.Converters._
 import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
@@ -24,7 +24,7 @@ import javascalautils.{Try => JTry, Success => JSuccess, Failure => JFailure}
  * Test suite for Converters Try/Success/Failure conversions.
  * @author Peter Nerg
  */
-class ConvertersTrySuite extends FunSuite {
+class ConvertersTrySuite extends AnyFunSuite {
   val expected = "Success is never a Failure"
   
   test("Test asScalaFailure") {

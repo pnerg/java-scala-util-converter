@@ -15,7 +15,7 @@
  */
 package javascalautils.converters.s2j
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import javascalautils.{ None => JNone, Option => JOption, Some => JSome }
 import javascalautils.converters.s2j.Implicits._
@@ -24,7 +24,7 @@ import javascalautils.converters.s2j.Implicits._
  * Test suite for Implicits scala.Option/Some/None conversions.
  * @author Peter Nerg
  */
-class ImplicitsOptionSuite extends FunSuite {
+class ImplicitsOptionSuite extends AnyFunSuite {
   val expected = "Some is never None"
 
   test("Scala None as Java") {

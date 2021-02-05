@@ -15,7 +15,7 @@
  */
 package javascalautils.converters.j2s
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import javascalautils.{ Either => JEither, Left => JLeft, Right => JRight }
 import javascalautils.converters.j2s.Converters._
@@ -24,7 +24,7 @@ import javascalautils.converters.j2s.Converters._
  * Test suite for Converters Either/Left/Right conversions.
  * @author Peter Nerg
  */
-class ConvertersEitherSuite extends FunSuite {
+class ConvertersEitherSuite extends AnyFunSuite {
   val expected = "Left is not Right"
 
   test("Test asScalaLeft") {
