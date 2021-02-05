@@ -15,12 +15,12 @@
  */
 package javascalautils.converters.s2j
 
+import javascalautils.ThrowableFunction1
+import javascalautils.converters.s2j.Implicits._
 import org.scalatest.funsuite.AnyFunSuite
 
-import javascalautils.converters.s2j.Implicits._
-import scala.concurrent.{ Future, ExecutionContext }
-import javascalautils.concurrent.{ Future => JFuture }
 import java.util.concurrent.TimeUnit
+import scala.concurrent.{ExecutionContext, Future}
 
 /**
  * Test suite for Implicits scala.Try/Success/Failure conversions.
@@ -41,7 +41,7 @@ class ImplicitsFutureSuite extends AnyFunSuite {
   test("Scala Failure as Java with completed failed Future") {
     val future:Future[String] = Future.failed(new Exception(errorMessage))
     val jfuture = future.asJava
-    val recoveredFuture = jfuture.recover(new java.util.function.Function[Throwable, String]() {
+    val recoveredFuture = jfuture.recover(new ThrowableFunction1[Throwable, String]() {
       def apply(t: Throwable) = t.getMessage
     })
     assertResult(errorMessage)(recoveredFuture.result(1, TimeUnit.SECONDS))
@@ -64,7 +64,7 @@ class ImplicitsFutureSuite extends AnyFunSuite {
     }
 
     val jfuture = future.asJava
-    val recoveredFuture = jfuture.recover(new java.util.function.Function[Throwable, String]() {
+    val recoveredFuture = jfuture.recover(new ThrowableFunction1[Throwable, String]() {
       def apply(t: Throwable) = t.getMessage
     })
     assertResult(errorMessage)(recoveredFuture.result(1, TimeUnit.SECONDS))
