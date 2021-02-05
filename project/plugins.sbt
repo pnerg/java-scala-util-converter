@@ -1,7 +1,5 @@
-addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.5.0")
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.6.0")
+addSbtPlugin("io.crashbox" % "sbt-gpg" % "0.2.0")
+addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "2.3")
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.9.18-1")
 
-addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.1")
-
-addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.0.0")
-
-addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "0.5.1")

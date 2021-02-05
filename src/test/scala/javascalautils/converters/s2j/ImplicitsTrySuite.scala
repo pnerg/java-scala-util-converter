@@ -15,7 +15,7 @@
  */
 package javascalautils.converters.s2j
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import javascalautils.{ None => JNone, Option => JOption, Some => JSome }
 import javascalautils.converters.s2j.Implicits._
@@ -25,7 +25,7 @@ import scala.util.{ Try, Success, Failure }
  * Test suite for Implicits scala.Try/Success/Failure conversions.
  * @author Peter Nerg
  */
-class ImplicitsTrySuite extends FunSuite {
+class ImplicitsTrySuite extends AnyFunSuite {
   val expected = "Failure is not an Option"
 
   test("Scala Failure as Java") {

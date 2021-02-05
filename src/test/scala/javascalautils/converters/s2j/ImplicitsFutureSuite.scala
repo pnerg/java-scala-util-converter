@@ -15,7 +15,7 @@
  */
 package javascalautils.converters.s2j
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import javascalautils.converters.s2j.Implicits._
 import scala.concurrent.{ Future, ExecutionContext }
@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit
  * Test suite for Implicits scala.Try/Success/Failure conversions.
  * @author Peter Nerg
  */
-class ImplicitsFutureSuite extends FunSuite {
+class ImplicitsFutureSuite extends AnyFunSuite {
   
   implicit val ec = ExecutionContext.global
   val expected = "The Future is right here!"

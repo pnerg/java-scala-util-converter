@@ -15,14 +15,14 @@
  */
 package javascalautils.converters.s2j
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import javascalautils.converters.s2j.Converters._
 
 /**
  * Test suite for Converters scala.util.Either/Left/Right conversions.
  * @author Peter Nerg
  */
-class ConvertersEitherSuite extends FunSuite {
+class ConvertersEitherSuite extends AnyFunSuite {
   val expected = "Left is not to the Right"
 
   test("Test asJavaLeft") {

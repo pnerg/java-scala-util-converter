@@ -15,7 +15,7 @@
  */
 package javascalautils.converters.s2j
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import javascalautils.converters.s2j.Implicits._
 
@@ -23,7 +23,7 @@ import javascalautils.converters.s2j.Implicits._
  * Test suite for Implicits scala.Either/Left/Right conversions.
  * @author Peter Nerg
  */
-class ImplicitsEitherSuite extends FunSuite {
+class ImplicitsEitherSuite extends AnyFunSuite {
   val expected = "Right is rarely Left"
 
   test("Scala Left as Java") {

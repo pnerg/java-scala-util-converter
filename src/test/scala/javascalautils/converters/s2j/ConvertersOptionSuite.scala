@@ -15,14 +15,14 @@
  */
 package javascalautils.converters.s2j
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import javascalautils.converters.s2j.Converters._
 
 /**
  * Test suite for Converters scala.Option/Some/None conversions.
  * @author Peter Nerg
  */
-class ConvertersOptionSuite extends FunSuite {
+class ConvertersOptionSuite extends AnyFunSuite {
     val expected = "Some is never None"
 
     test("Test asJavaNone") {

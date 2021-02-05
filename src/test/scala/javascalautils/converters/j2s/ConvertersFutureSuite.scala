@@ -15,7 +15,7 @@
  */
 package javascalautils.converters.j2s
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.concurrent.ScalaFutures
 import javascalautils.concurrent.{ Future => JFuture }
 import javascalautils.converters.j2s.Converters._
@@ -27,7 +27,7 @@ import scala.concurrent.Await
  * Test suite for Converters Future conversions.
  * @author Peter Nerg
  */
-class ConvertersFutureSuite extends FunSuite with ScalaFutures {
+class ConvertersFutureSuite extends AnyFunSuite with ScalaFutures {
   val expected = "The Future is here"
   val errorMessage = "Error in the Future"
   

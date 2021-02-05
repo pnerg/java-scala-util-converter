@@ -15,7 +15,7 @@
  */
 package javascalautils.converters.j2s
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import javascalautils.concurrent.{ Future => JFuture }
 import javascalautils.converters.j2s.Implicits._
 import org.scalatest.concurrent.ScalaFutures
@@ -24,7 +24,7 @@ import org.scalatest.concurrent.ScalaFutures
  * Test suite for Implicits Future conversions.
  * @author Peter Nerg
  */
-class ImplicitsFutureSuite extends FunSuite with ScalaFutures {
+class ImplicitsFutureSuite extends AnyFunSuite with ScalaFutures {
   val expected = "The Future carries a Promise of better times"
 
   test("Java Future as Scala") {

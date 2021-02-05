@@ -15,7 +15,7 @@
  */
 package javascalautils.converters.s2j
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import javascalautils.converters.s2j.Converters._
 import scala.concurrent.{ Future, ExecutionContext }
 import javascalautils.concurrent.{ Future => JFuture }
@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit
  * Test suite for Converters scala.concurrent.Future conversions.
  * @author Peter Nerg
  */
-class ConvertersFutureSuite extends FunSuite {
+class ConvertersFutureSuite extends AnyFunSuite {
   implicit val ec = ExecutionContext.global
   val expected = "The Future is right here!"
   val errorMessage = "Ooops the Future did not happen"

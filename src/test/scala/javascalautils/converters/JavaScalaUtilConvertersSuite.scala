@@ -15,7 +15,7 @@
  */
 package javascalautils.converters
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import javascalautils.{ None => JNone, Some => JSome, Option => JOption }
 import javascalautils.converters.JavaScalaUtilConverters._
@@ -25,7 +25,7 @@ import javascalautils.converters.JavaScalaUtilConverters._
  * This will only test a few use cases to verify the import.
  * @author Peter Nerg
  */
-class JavaScalaUtilConvertersSuite extends FunSuite {
+class JavaScalaUtilConvertersSuite extends AnyFunSuite {
   val expected = "Some is never None"
 
   test("Test asScalaOption with Some") {
