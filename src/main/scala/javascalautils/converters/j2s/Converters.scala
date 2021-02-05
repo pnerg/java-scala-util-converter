@@ -196,9 +196,9 @@ trait FutureConverters {
    * @since 1.0
    */
   def asScalaFuture[T](underlying: JFuture[T]) = {
-    val promise = Promise[T]
+    val promise = Promise[T]()
     underlying.onComplete(new Consumer[JTry[T]]() {
-      def accept(result: JTry[T]) {
+      def accept(result: JTry[T]):Unit = {
         promise.complete(Converters.asScalaTry(result))
       }
     })
