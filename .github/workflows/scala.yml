@@ -3,7 +3,7 @@ name: Build & Test
 on: [push, pull_request]
 
 jobs:
-  test:
+  test-and-coverage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
