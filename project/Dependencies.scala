@@ -14,7 +14,7 @@ object Dependencies extends AutoPlugin {
      * Test dependencies
      * ------------------------------
      */
-    val scalatest = "org.scalatest" %% "scalatest" % "3.2.8"
+    val scalatest = "org.scalatest" %% "scalatest" % "3.2.9"
   }
 
 }
