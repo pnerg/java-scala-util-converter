@@ -1,4 +1,4 @@
-addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.8.1")
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.8.2")
 
 addSbtPlugin("io.crashbox" % "sbt-gpg" % "0.2.1")
 
