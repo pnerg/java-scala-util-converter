@@ -8,7 +8,7 @@ object Dependencies extends AutoPlugin {
      * Compile/hard dependencies
      * ------------------------------
      */
-    val `java-scala-utils` = "org.dmonix.functional" % "java-scala-utils" % "1.11"
+    val `java-scala-utils` = "org.dmonix.functional" % "java-scala-utils" % "1.11.2"
     /**
      * ------------------------------
      * Test dependencies
