@@ -2,8 +2,8 @@ name := "java-scala-utils-converter"
 organization := "org.dmonix.functional"
 version := "1.2.0"
 
-scalaVersion := "2.12.12"
-crossScalaVersions := Seq("2.11.12", "2.12.12", "2.13.7")
+scalaVersion := "2.12.15"
+crossScalaVersions := Seq("2.11.12", "2.12.15", "2.13.7")
 
 scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature", "-language:implicitConversions", "-language:higherKinds", "-target:jvm-1.8")
 scalacOptions in (Compile, doc) ++= Seq("-doc-title", "Java Scala Utils Converter API")
